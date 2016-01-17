@@ -1,15 +1,15 @@
 ﻿#pragma strict
 
-var speedModifier = 0.5;
+private var speedModifier = 0.4;
 
-function FixedUpdate () {
+function FixedUpdate() {
     var verticalSpeed = Input.GetAxis("Vertical");
     var horizontalSpeed = Input.GetAxis("Horizontal");
 
     var newPosition = transform.position;
 
-    newPosition.x += horizontalSpeed;
-    newPosition.y += verticalSpeed;
+    newPosition.x += horizontalSpeed * speedModifier;
+    newPosition.y += verticalSpeed * speedModifier;
 
     transform.position = newPosition;
 }
