@@ -28,6 +28,6 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
 
-        transform.position = new Vector3(0, 2, 0);
+        transform.position = new Vector3(0, 1, 0);
     }
 }
