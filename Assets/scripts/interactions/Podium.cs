@@ -5,8 +5,12 @@ using UnityEngine.Networking;
 public class Podium : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<PlayerIdentity>().IsSeeker()) {
-            NetworkManager.singleton.ServerChangeScene("seekerVictory");
+        if (other.gameObject.tag == "Player") {
+            PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
+
+            if (id.IsSeeker()) {
+                NetworkManager.singleton.ServerChangeScene("seekerVictory");
+            }
         }
     }
 }

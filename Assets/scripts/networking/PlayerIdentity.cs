@@ -14,7 +14,6 @@ public class PlayerIdentity : UnityEngine.Networking.NetworkBehaviour {
         // If this is the client, set the localPlayer to the Seeker and the other player to the Hunter
         // TL;DR If you host, you play as the Hunter
         if (isServer) {
-            Debug.Log("Someone is the server...");
             if (isLocalPlayer) {
                 InitAsHunter();
             } else {
@@ -45,5 +44,9 @@ public class PlayerIdentity : UnityEngine.Networking.NetworkBehaviour {
 
     public bool IsSeeker () {
         return !isHunter;
+    }
+
+    public bool IsThisPlayer() {
+        return isLocalPlayer;
     }
 }

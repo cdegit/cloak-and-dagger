@@ -10,7 +10,9 @@ public class HunterCapture : MonoBehaviour {
 	}
 
     bool validateStatus(Collider other) {
-        return isHunter && other.gameObject.tag == "Player" && other.gameObject.GetComponent<PlayerIdentity>().IsSeeker();
+        PlayerIdentity otherId = other.gameObject.GetComponent<PlayerIdentity>();
+        // If the current player is the hunter and the collider they've run into is the Seeker
+        return isHunter && other.gameObject.tag == "Player" && otherId.IsSeeker() && !otherId.IsThisPlayer();
     }
 
     void OnTriggerEnter(Collider other) {

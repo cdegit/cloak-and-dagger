@@ -18,15 +18,17 @@ public class interactInRange : MonoBehaviour {
 
     // Note: For this to work, the rigidbody in the player must be set to never sleep
     // Otherwise this just isn't fired
-
-    // TODO: If you push the other player into an item and click, it'll register as an interaction for them
-    // Player identity should tell you if you're the current player (so not everything needs to extend network behaviour)
     void OnTriggerStay (Collider other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonUp("Fire1")) {
-            if (other.gameObject.GetComponent<PlayerIdentity>().IsHunter()) {
-                this.HunterInteraction();
-            } else {
-                this.SeekerInteraction();
+            PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
+            
+            // Make sure you aren't triggering interactions on the other player
+            if (id.IsThisPlayer()) {
+                if (id.IsHunter()) {
+                    this.HunterInteraction();
+                } else {
+                    this.SeekerInteraction();
+                }
             }
         }
     }
