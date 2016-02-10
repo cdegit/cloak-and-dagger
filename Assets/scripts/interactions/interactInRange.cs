@@ -23,21 +23,24 @@ public class interactInRange : MonoBehaviour {
             PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
             
             // Make sure you aren't triggering interactions on the other player
+            // But this is stopping the hiding state from going to both
+            // hmmmmmmm
+            // Need to make sure that the input only affects the appropriate player
             if (id.IsThisPlayer()) {
                 if (id.IsHunter()) {
-                    this.HunterInteraction();
+                    this.HunterInteraction(other);
                 } else {
-                    this.SeekerInteraction();
+                    this.SeekerInteraction(other);
                 }
             }
         }
     }
 
-    public virtual void SeekerInteraction() {
+    public virtual void SeekerInteraction(Collider other) {
 
     }
 
-    public virtual void HunterInteraction() {
+    public virtual void HunterInteraction(Collider other) {
 
     }
 }

@@ -6,8 +6,10 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
     private float speedModifier = 0.4f;
     private NavMeshAgent navAgent;
 
+    private SeekerBehaviour seeker;
+
     void FixedUpdate() {
-        if (!isLocalPlayer) {
+        if (!isLocalPlayer || seeker.IsHiding()) {
             return;
         }
 
@@ -25,6 +27,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         }
 
         navAgent = GetComponent<NavMeshAgent>();
+        seeker = GetComponent<SeekerBehaviour>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
 
