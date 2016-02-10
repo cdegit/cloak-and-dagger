@@ -21,8 +21,7 @@ public class HunterCapture : MonoBehaviour {
         if (ReferenceEquals(seeker, null)) {
             return false;
         }
-
-        Debug.Log(seeker);
+        
         // If the hunter clicks they can take the seeker out of hiding
         // All of this shit needs to be synced to the server instead of just hopefully lining up
 

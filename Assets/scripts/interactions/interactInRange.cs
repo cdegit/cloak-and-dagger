@@ -22,9 +22,6 @@ public class interactInRange : MonoBehaviour {
         if (other.gameObject.tag == "Player" && Input.GetButtonUp("Fire1")) {
             PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
             
-            // Make sure you aren't triggering interactions on the other player
-            // But this is stopping the hiding state from going to both
-            // hmmmmmmm
             // Need to make sure that the input only affects the appropriate player
             if (id.IsThisPlayer()) {
                 if (id.IsHunter()) {
