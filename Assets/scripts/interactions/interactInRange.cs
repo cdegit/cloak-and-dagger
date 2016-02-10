@@ -6,14 +6,24 @@ using System.Collections;
 //     a Collider set to trigger
 
 public class interactInRange : MonoBehaviour {
+    private Renderer localRenderer;
+
+    void Start() {
+        localRenderer = GetComponent<Renderer>();
+    }
+
     void OnTriggerEnter(Collider other) {
         // highlight this object
         // show a GUI instruction (maybe)
-        GetComponent<Renderer>().material.color = Color.red;
+        if (localRenderer) {
+            localRenderer.material.color = Color.red;
+        }
     }
 
     void OnTriggerExit(Collider other) {
-        GetComponent<Renderer>().material.color = Color.white;
+        if (localRenderer) {
+            localRenderer.material.color = Color.white;
+        }
     }
 
     // Note: For this to work, the rigidbody in the player must be set to never sleep
