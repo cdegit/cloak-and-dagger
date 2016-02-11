@@ -13,6 +13,12 @@ public class interactInRange : MonoBehaviour {
         localRenderer = GetComponent<Renderer>();
     }
 
+    void Update() {
+        if (!otherPlayer) {
+            otherPlayer = PlayerManager.instance.otherPlayer;
+        }
+    }
+
     void OnTriggerEnter(Collider other) {
         // highlight this object
         // show a GUI instruction (maybe)
@@ -51,18 +57,5 @@ public class interactInRange : MonoBehaviour {
 
     public virtual void HunterInteraction(Collider other) {
 
-    }
-
-    protected void FindOtherPlayer() {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach (GameObject go in gos) {
-            if (go.GetComponent<PlayerIdentity>()) {
-                if (!go.GetComponent<PlayerIdentity>().IsThisPlayer()) {
-                    otherPlayer = go;
-                }
-            }
-        }
     }
 }

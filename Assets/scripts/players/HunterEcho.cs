@@ -9,6 +9,8 @@ public class HunterEcho : MonoBehaviour {
     private float echoCooldownTime = 3f; // seconds
     private float echoCooldownTimer = Mathf.Infinity;
 
+    private ParticleEmitter echoParticleEmitter;
+
     private bool isHunter;
 
     private HidingManager hidingManager;
@@ -17,6 +19,7 @@ public class HunterEcho : MonoBehaviour {
 	void Start () {
         hidingPlaceLayerMask = 1 << layerIndex;
         isHunter = GetComponent<PlayerIdentity>().IsHunter();
+        echoParticleEmitter = GetComponentInChildren<ParticleEmitter>();
     }
 	
 	// Update is called once per frame
@@ -57,5 +60,7 @@ public class HunterEcho : MonoBehaviour {
             hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
             i++;
         }
+
+        echoParticleEmitter.Emit();
     }
 }
