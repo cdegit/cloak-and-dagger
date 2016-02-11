@@ -7,6 +7,7 @@ using System.Collections;
 
 public class interactInRange : MonoBehaviour {
     private Renderer localRenderer;
+    protected GameObject otherPlayer;
 
     void Start() {
         localRenderer = GetComponent<Renderer>();
@@ -32,6 +33,7 @@ public class interactInRange : MonoBehaviour {
         if (other.gameObject.tag == "Player" && Input.GetButtonUp("Fire1")) {
             PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
             
+            
             // Need to make sure that the input only affects the appropriate player
             if (id.IsThisPlayer()) {
                 if (id.IsHunter()) {
@@ -49,5 +51,18 @@ public class interactInRange : MonoBehaviour {
 
     public virtual void HunterInteraction(Collider other) {
 
+    }
+
+    protected void FindOtherPlayer() {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject go in gos) {
+            if (go.GetComponent<PlayerIdentity>()) {
+                if (!go.GetComponent<PlayerIdentity>().IsThisPlayer()) {
+                    otherPlayer = go;
+                }
+            }
+        }
     }
 }

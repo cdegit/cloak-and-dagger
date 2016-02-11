@@ -16,9 +16,9 @@ public class HunterCapture : MonoBehaviour {
         }
 
         PlayerIdentity otherId = other.gameObject.GetComponent<PlayerIdentity>();
-        SeekerBehaviour seeker = other.gameObject.GetComponent<SeekerBehaviour>();
+        HidingManager hidingManager = other.gameObject.GetComponent<HidingManager>();
 
-        if (ReferenceEquals(seeker, null)) {
+        if (ReferenceEquals(hidingManager, null)) {
             return false;
         }
         
@@ -26,7 +26,7 @@ public class HunterCapture : MonoBehaviour {
         // All of this shit needs to be synced to the server instead of just hopefully lining up
 
         // If the current player is the hunter and the collider they've run into is the Seeker and the Seeker isn't in hiding
-        return thisIsHunter && other.gameObject.tag == "Player" && otherId.IsSeeker() && !otherId.IsThisPlayer() && !seeker.IsHiding();
+        return thisIsHunter && other.gameObject.tag == "Player" && otherId.IsSeeker() && !otherId.IsThisPlayer() && !hidingManager.IsHiding();
     }
 
     void OnTriggerEnter(Collider other) {
