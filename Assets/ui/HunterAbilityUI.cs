@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HunterAbility : MonoBehaviour {
-    public static HunterAbility instance = null;
+public class HunterAbilityUI : MonoBehaviour {
+    public static HunterAbilityUI instance = null;
 
     public Texture2D emptyProgressBar;
     public Texture2D fullProgressBar;

@@ -10,7 +10,7 @@ public class Loader : MonoBehaviour {
             Instantiate(playerManager);
         }
 
-        if (HunterAbility.instance == null) {
+        if (HunterAbilityUI.instance == null) {
             Instantiate(hunterAbilityUI);
         }
     }

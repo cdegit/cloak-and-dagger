@@ -44,7 +44,7 @@ public class HunterEcho : MonoBehaviour {
             echoCooldownTimer += Time.deltaTime;
         }
 
-        HunterAbility.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
+        HunterAbilityUI.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
     }
 
     // Send out a circle to some distance
