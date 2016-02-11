@@ -11,20 +11,19 @@ public class HunterEcho : MonoBehaviour {
 
     private ParticleEmitter echoParticleEmitter;
 
-    private bool isHunter;
-
+    private PlayerIdentity id;
     private HidingManager hidingManager;
 
 	// Use this for initialization
 	void Start () {
         hidingPlaceLayerMask = 1 << layerIndex;
-        isHunter = GetComponent<PlayerIdentity>().IsHunter();
+        id = GetComponent<PlayerIdentity>();
         echoParticleEmitter = GetComponentInChildren<ParticleEmitter>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!isHunter) {
+        if (!id.IsHunter() || !id.IsThisPlayer()) {
             return;
         }
 
@@ -35,11 +34,8 @@ public class HunterEcho : MonoBehaviour {
             }
         }
 
-        // TODO:
-        // It should probably be a different button
-        // Also also will need to show cooldown on GUI or on player somehow
-        // Do it with text for now
-	    if (echoCooldownTimer > echoCooldownTime && Input.GetButtonUp("Fire1")) {
+        // TODO: Should lock the hunter in place for a short time as well
+	    if (echoCooldownTimer > echoCooldownTime && Input.GetButtonUp("Fire2")) {
             UseEcho();
             echoCooldownTimer = 0;
         }
@@ -47,6 +43,8 @@ public class HunterEcho : MonoBehaviour {
         if (echoCooldownTimer < echoCooldownTime) {
             echoCooldownTimer += Time.deltaTime;
         }
+
+        HunterAbility.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
     }
 
     // Send out a circle to some distance
@@ -57,7 +55,9 @@ public class HunterEcho : MonoBehaviour {
         int i = 0;
         while (i < hitColliders.Length) {
             // Kick the Seeker out of their hiding place
-            hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
+            if (hidingManager) {
+                hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
+            }
             i++;
         }
 

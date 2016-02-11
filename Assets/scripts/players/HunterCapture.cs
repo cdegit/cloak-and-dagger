@@ -23,7 +23,7 @@ public class HunterCapture : MonoBehaviour {
         }
         
         // If the hunter clicks they can take the seeker out of hiding
-        // All of this shit needs to be synced to the server instead of just hopefully lining up
+        // All of this stuff needs to be synced to the server instead of just hopefully lining up
 
         // If the current player is the hunter and the collider they've run into is the Seeker and the Seeker isn't in hiding
         return thisIsHunter && other.gameObject.tag == "Player" && otherId.IsSeeker() && !otherId.IsThisPlayer() && !hidingManager.IsHiding();

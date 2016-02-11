@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerManager : MonoBehaviour {
     public GameObject otherPlayer;
+    public GameObject thisPlayer;
     public static PlayerManager instance = null;
 
     void Awake() {
@@ -25,6 +26,8 @@ public class PlayerManager : MonoBehaviour {
                 if (go.GetComponent<PlayerIdentity>()) {
                     if (!go.GetComponent<PlayerIdentity>().IsThisPlayer()) {
                         otherPlayer = go;
+                    } else {
+                        thisPlayer = go;
                     }
                 }
             }
