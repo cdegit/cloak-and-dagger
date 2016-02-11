@@ -8,6 +8,8 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private Renderer localRenderer;
     public GameObject currentHidingPlace;
 
+    private bool emitParticlesWhenSeekerFound = false;
+
     void Start() {
         localRenderer = GetComponent<Renderer>();
     }
@@ -40,6 +42,16 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private void RpcStopHiding() {
         inHiding = false;
         localRenderer.enabled = true;
+
+        // This is only set when the Hunter uses their echo ability at the moment
+        if (emitParticlesWhenSeekerFound) {
+            ParticleEmitter emitter = currentHidingPlace.GetComponentInChildren<ParticleEmitter>();
+            if (emitter) {
+                emitter.Emit();
+            }
+            emitParticlesWhenSeekerFound = false;
+        }
+
         currentHidingPlace = null;
 
         // Nudge the player slightly so we can see that they've left the hiding place
@@ -47,7 +59,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         transform.position = nudgedPosition;
     }
 
-    public void CmdCheckHidingPlace(GameObject hidingPlace) {
+    public void CmdCheckHidingPlace(GameObject hidingPlace, bool emitParticles = false) {
         // Check if the Seeker is hiding in the same hiding place the Hunter is currently checking
         // If they are the same, kick the Seeker out of their hiding place
         if (!currentHidingPlace) {
@@ -57,6 +69,10 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         if (currentHidingPlace.GetInstanceID() == hidingPlace.GetInstanceID()) {
             CmdStopHiding();
         }
+    }
+
+    public void EmitParticlesOnNextFind() {
+        emitParticlesWhenSeekerFound = true;
     }
 
     public bool IsHiding() {

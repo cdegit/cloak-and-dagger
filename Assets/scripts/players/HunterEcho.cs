@@ -56,6 +56,7 @@ public class HunterEcho : MonoBehaviour {
         while (i < hitColliders.Length) {
             // Kick the Seeker out of their hiding place
             if (hidingManager) {
+                hidingManager.EmitParticlesOnNextFind();
                 hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
             }
             i++;
