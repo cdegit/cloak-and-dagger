@@ -59,7 +59,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         transform.position = nudgedPosition;
     }
 
-    public void CmdCheckHidingPlace(GameObject hidingPlace, bool emitParticles = false) {
+    public void CmdCheckHidingPlace(GameObject hidingPlace) {
         // Check if the Seeker is hiding in the same hiding place the Hunter is currently checking
         // If they are the same, kick the Seeker out of their hiding place
         if (!currentHidingPlace) {
