@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// NOTE: Not currently used, as we're not currently using the gameStateManager
-
 public class Loader : MonoBehaviour {
-    public GameObject gameStateManager;
+    public GameObject playerManager;
 
     void Awake() {
-        if (GameStateManager.instance == null) {
-            Instantiate(gameStateManager);
+        if (PlayerManager.instance == null) {
+            Instantiate(playerManager);
         }
     }
 }

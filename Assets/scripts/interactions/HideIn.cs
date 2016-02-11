@@ -23,11 +23,6 @@ public class HideIn : interactInRange {
 
     public override void HunterInteraction(Collider thisPlayer) {
         // If the Seeker is in this hiding place, remove them from hiding but don't immediately capture them
-
-        if (!otherPlayer) {
-            FindOtherPlayer();
-        }
-
         // Call on the seeker object because it was easier thanks to networking issues....
         HidingManager hidingManager = otherPlayer.gameObject.GetComponent<HidingManager>();
         hidingManager.CmdCheckHidingPlace(basketGameObject);

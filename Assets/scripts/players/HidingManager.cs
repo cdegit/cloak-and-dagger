@@ -42,12 +42,16 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         localRenderer.enabled = true;
         currentHidingPlace = null;
 
-        // Should nudge the player out of their current position slightly, so we can see they've left
+        // TODO: Should nudge the player out of their current position slightly, so we can see they've left
     }
 
     public void CmdCheckHidingPlace(GameObject hidingPlace) {
         // Check if the Seeker is hiding in the same hiding place the Hunter is currently checking
         // If they are the same, kick the Seeker out of their hiding place
+        if (!currentHidingPlace) {
+            return;
+        }
+
         if (currentHidingPlace.GetInstanceID() == hidingPlace.GetInstanceID()) {
             CmdStopHiding();
         }
