@@ -9,6 +9,9 @@ public class HunterEcho : MonoBehaviour {
     private float echoCooldownTime = 3f; // seconds
     private float echoCooldownTimer = Mathf.Infinity;
 
+    private float echoMovementCooldownTime = 0.5f;
+    private float echoMovementCooldownTimer = Mathf.Infinity;
+
     private ParticleEmitter echoParticleEmitter;
 
     private PlayerIdentity id;
@@ -33,15 +36,20 @@ public class HunterEcho : MonoBehaviour {
                 hidingManager = PlayerManager.instance.otherPlayer.GetComponent<HidingManager>();
             }
         }
-
-        // TODO: Should lock the hunter in place for a short time as well
-	    if (echoCooldownTimer > echoCooldownTime && Input.GetButtonUp("Fire2")) {
+        
+	    if (echoCooldownTimer >= echoCooldownTime && Input.GetButtonUp("Fire2")) {
             UseEcho();
             echoCooldownTimer = 0;
+            echoMovementCooldownTimer = 0;
         }
         
         if (echoCooldownTimer < echoCooldownTime) {
             echoCooldownTimer += Time.deltaTime;
+        }
+
+        // Don't let the player move for a short time after using this ability
+        if (echoMovementCooldownTimer < echoMovementCooldownTime) {
+            echoMovementCooldownTimer += Time.deltaTime;
         }
 
         HunterAbilityUI.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
@@ -63,5 +71,9 @@ public class HunterEcho : MonoBehaviour {
         }
 
         echoParticleEmitter.Emit();
+    }
+
+    public bool CanHunterMove() {
+        return echoMovementCooldownTimer >= echoMovementCooldownTime;
     }
 }

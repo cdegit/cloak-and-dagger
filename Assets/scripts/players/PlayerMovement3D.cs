@@ -7,6 +7,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
     private NavMeshAgent navAgent;
 
     private HidingManager hidingManager;
+    private HunterEcho hunterEchoAbility;
 
     void FixedUpdate() {
         if (!isLocalPlayer) {
@@ -17,6 +18,10 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
             // Set the seeker's position to the position of whatever they're hiding in
             // This is mostly so that they'll move with whatever crowd they're in
             transform.position = hidingManager.currentHidingPlace.transform.position;
+            return;
+        }
+
+        if (!hunterEchoAbility.CanHunterMove()) {
             return;
         }
 
@@ -35,6 +40,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
         navAgent = GetComponent<NavMeshAgent>();
         hidingManager = GetComponent<HidingManager>();
+        hunterEchoAbility = GetComponent<HunterEcho>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
 
