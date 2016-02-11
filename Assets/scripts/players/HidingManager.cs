@@ -42,7 +42,9 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         localRenderer.enabled = true;
         currentHidingPlace = null;
 
-        // TODO: Should nudge the player out of their current position slightly, so we can see they've left
+        // Nudge the player slightly so we can see that they've left the hiding place
+        Vector3 nudgedPosition = transform.position + new Vector3(Random.Range(0f, 0.5f), 0, Random.Range(0f, 0.5f));
+        transform.position = nudgedPosition;
     }
 
     public void CmdCheckHidingPlace(GameObject hidingPlace) {
