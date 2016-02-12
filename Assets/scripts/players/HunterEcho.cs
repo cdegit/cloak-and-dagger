@@ -58,16 +58,22 @@ public class HunterEcho : MonoBehaviour {
     // Send out a circle to some distance
     // Draw it as it goes along the ground ideally
     void UseEcho() {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, echoSphereRadius, hidingPlaceLayerMask);
+        // First check if the player is even within their range
+        float distanceToSeeker = Vector3.Distance(PlayerManager.instance.otherPlayer.transform.position, transform.position);
+        Debug.Log(distanceToSeeker);
 
-        int i = 0;
-        while (i < hitColliders.Length) {
-            // Kick the Seeker out of their hiding place
-            if (hidingManager) {
-                hidingManager.EmitParticlesOnNextFind();
-                hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
+        if (distanceToSeeker <= echoSphereRadius) {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, echoSphereRadius, hidingPlaceLayerMask);
+
+            int i = 0;
+            while (i < hitColliders.Length) {
+                // Kick the Seeker out of their hiding place
+                if (hidingManager) {
+                    hidingManager.EmitParticlesOnNextFind();
+                    hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
+                }
+                i++;
             }
-            i++;
         }
 
         echoParticleEmitter.Emit();

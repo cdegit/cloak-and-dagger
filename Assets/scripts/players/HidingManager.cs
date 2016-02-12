@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
-    private bool inHiding = false;
+    private bool hiding = false;
+    private bool stationary = false;
 
     private Renderer localRenderer;
     public GameObject currentHidingPlace;
@@ -24,12 +25,13 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private void RpcHide(GameObject hidingPlace) {
         // By making this an RPC, it gets executed on both clients
         // This will disable player movement
-        inHiding = true;
+        hiding = true;
+        stationary = true;
 
         // This makes the player invisible
         // Should also make it so the other player can't run into them
         localRenderer.enabled = false;
-        
+
         currentHidingPlace = hidingPlace;
     }
 
@@ -40,23 +42,26 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 
     [ClientRpc]
     private void RpcStopHiding() {
-        inHiding = false;
-        localRenderer.enabled = true;
+        // Nudge the player slightly so we can see that they've left the hiding place
+        if (stationary) {
+            Vector3 nudgedPosition = transform.position + new Vector3(Random.Range(0f, 0.5f), 0, Random.Range(0f, 0.5f));
+            transform.position = nudgedPosition;
+        }
 
         // This is only set when the Hunter uses their echo ability at the moment
-        if (emitParticlesWhenSeekerFound) {
+        if (emitParticlesWhenSeekerFound && currentHidingPlace) {
             ParticleEmitter emitter = currentHidingPlace.GetComponentInChildren<ParticleEmitter>();
             if (emitter) {
                 emitter.Emit();
             }
-            emitParticlesWhenSeekerFound = false;
         }
 
+        hiding = false;
+        stationary = false;
         currentHidingPlace = null;
+        emitParticlesWhenSeekerFound = false;
 
-        // Nudge the player slightly so we can see that they've left the hiding place
-        Vector3 nudgedPosition = transform.position + new Vector3(Random.Range(0f, 0.5f), 0, Random.Range(0f, 0.5f));
-        transform.position = nudgedPosition;
+        localRenderer.enabled = true;
     }
 
     public void CmdCheckHidingPlace(GameObject hidingPlace) {
@@ -76,10 +81,33 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     }
 
     public bool IsHiding() {
-        return inHiding;
+        return hiding;
+    }
+
+    public bool IsHidingStationary() {
+        return hiding && stationary;
+    }
+
+    public bool IsHidingMovable() {
+        return hiding && !stationary;
     }
 
     public Vector3 GetHidingPosition() {
         return currentHidingPlace.transform.position;
+    }
+
+    [Command]
+    public void CmdHideInGrass(GameObject hidingPlace) {
+        currentHidingPlace = hidingPlace;
+        RpcHideInGrass(hidingPlace);
+    }
+
+    [ClientRpc]
+    private void RpcHideInGrass(GameObject hidingPlace) {
+        // Almost the same as hiding normally, but let the player move
+        hiding = true;
+        stationary = false;
+        localRenderer.enabled = false;
+        currentHidingPlace = hidingPlace;
     }
 }

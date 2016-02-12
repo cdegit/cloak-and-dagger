@@ -4,6 +4,9 @@ using System.Collections;
 public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
     private float speedModifier = 0.4f;
+    private float defaultSpeedModifier = 0.4f;
+    private float hunterSpeedModifier = 0.6f;
+
     private NavMeshAgent navAgent;
 
     private HidingManager hidingManager;
@@ -14,11 +17,18 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
             return;
         }
 
-        if (hidingManager.IsHiding()) {
+        if (hidingManager.IsHidingStationary()) {
             // Set the seeker's position to the position of whatever they're hiding in
             // This is mostly so that they'll move with whatever crowd they're in
             transform.position = hidingManager.currentHidingPlace.transform.position;
             return;
+        }
+
+        // If they're sneaking through the grass
+        if (hidingManager.IsHidingMovable()) {
+            speedModifier = defaultSpeedModifier / 4;
+        } else {
+            speedModifier = defaultSpeedModifier;
         }
 
         if (!hunterEchoAbility.CanHunterMove()) {
