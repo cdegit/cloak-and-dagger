@@ -29,4 +29,12 @@ public class SpriteFollowPlayer : MonoBehaviour {
             seekerSprite.transform.position = transform.position + new Vector3(0, seekerOffset, 0);
         }
 	}
+
+    public GameObject GetSprite() {
+        if (id.IsHunter()) {
+            return hunterSprite;
+        } else {
+            return seekerSprite;
+        }
+    }
 }
