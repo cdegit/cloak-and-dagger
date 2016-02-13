@@ -60,7 +60,6 @@ public class HunterEcho : MonoBehaviour {
     void UseEcho() {
         // First check if the player is even within their range
         float distanceToSeeker = Vector3.Distance(PlayerManager.instance.otherPlayer.transform.position, transform.position);
-        Debug.Log(distanceToSeeker);
 
         if (distanceToSeeker <= echoSphereRadius) {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, echoSphereRadius, hidingPlaceLayerMask);

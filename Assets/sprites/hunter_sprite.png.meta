@@ -1,0 +1,240 @@
+fileFormatVersion: 2
+guid: 36aabbf4208efca40b563552e5e78b53
+timeCreated: 1455393445
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hunter_sprite_0
+    21300002: hunter_sprite_1
+    21300004: hunter_sprite_2
+    21300006: hunter_sprite_3
+    21300008: hunter_sprite_4
+    21300010: hunter_sprite_5
+    21300012: hunter_sprite_6
+    21300014: hunter_sprite_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hunter_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 634
+        width: 89
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25.5, y: 44.5}
+        - {x: 2.5, y: 78.5}
+        - {x: -29.5, y: 78.5}
+        - {x: -43.5, y: 61.5}
+        - {x: -44.5, y: 55.5}
+        - {x: -44.5, y: -73.5}
+        - {x: -28.5, y: -78.5}
+        - {x: 21.5, y: -78.5}
+        - {x: 43.5, y: -71.5}
+        - {x: 44.5, y: -68.5}
+        - {x: 44.5, y: -50.5}
+    - name: hunter_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 638
+        width: 140
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 76}
+        - {x: -70, y: -41}
+        - {x: -67, y: -76}
+        - {x: 4, y: -76}
+        - {x: 70, y: -17}
+        - {x: 70, y: 40}
+        - {x: 2, y: 76}
+      - - {x: -64, y: -24}
+        - {x: -62, y: -26}
+        - {x: -59, y: -25}
+        - {x: -59, y: -22}
+        - {x: -61, y: -20}
+        - {x: -64, y: -21}
+    - name: hunter_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 436
+        width: 100
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 83}
+        - {x: -17, y: 83}
+        - {x: -30, y: 78}
+        - {x: -50, y: -35}
+        - {x: -50, y: -79}
+        - {x: -38, y: -83}
+        - {x: 8, y: -83}
+        - {x: 30, y: -71}
+        - {x: 34, y: -44}
+        - {x: 50, y: 12}
+        - {x: 50, y: 51}
+    - name: hunter_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 437
+        width: 142
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: -82.5}
+        - {x: 7, y: -80.5}
+        - {x: 4, y: -79.5}
+        - {x: 2, y: -82.5}
+      - - {x: -9, y: 82.5}
+        - {x: -71, y: 3.5}
+        - {x: -71, y: -75.5}
+        - {x: 39, y: -75.5}
+        - {x: 71, y: 8.5}
+        - {x: 71, y: 82.5}
+    - name: hunter_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 241
+        width: 89
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 78.5}
+        - {x: -44.5, y: 9.5}
+        - {x: -44.5, y: -78.5}
+        - {x: 43.5, y: -78.5}
+        - {x: 44.5, y: -77.5}
+        - {x: 44.5, y: 77.5}
+        - {x: 43.5, y: 78.5}
+    - name: hunter_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 247
+        width: 140
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 76}
+        - {x: -70, y: 6}
+        - {x: -70, y: -26}
+        - {x: -9, y: -76}
+        - {x: 56, y: -76}
+        - {x: 70, y: -39}
+        - {x: 70, y: 71}
+        - {x: 59, y: 76}
+      - - {x: 59, y: -24}
+        - {x: 61, y: -26}
+        - {x: 64, y: -25}
+        - {x: 64, y: -22}
+        - {x: 62, y: -20}
+        - {x: 59, y: -21}
+    - name: hunter_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 37
+        width: 100
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 83}
+        - {x: -23, y: 83}
+        - {x: -50, y: 54}
+        - {x: -50, y: 16}
+        - {x: -31, y: -71}
+        - {x: -5, y: -83}
+        - {x: 35, y: -83}
+        - {x: 50, y: -79}
+        - {x: 50, y: -21}
+        - {x: 38, y: 67}
+    - name: hunter_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 37
+        width: 142
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: -82.5}
+        - {x: -2, y: -80.5}
+        - {x: -5, y: -79.5}
+        - {x: -7, y: -82.5}
+      - - {x: -71, y: 9.5}
+        - {x: -37, y: -75.5}
+        - {x: 71, y: -75.5}
+        - {x: 71, y: -13.5}
+        - {x: 22, y: 82.5}
+        - {x: -52, y: 82.5}
+        - {x: -71, y: 58.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

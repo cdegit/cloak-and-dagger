@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour {
 
 	void Update () {
         // The other player may not be available at Start, so do it on update until we can find them
-        if (!otherPlayer) {
+        if (!otherPlayer || !thisPlayer) {
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
 
