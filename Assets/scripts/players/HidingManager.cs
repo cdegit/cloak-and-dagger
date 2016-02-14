@@ -6,13 +6,15 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private bool hiding = false;
     private bool stationary = false;
 
-    private Renderer localRenderer;
+    private SpriteFollowPlayer playerSpriteManager;
     public GameObject currentHidingPlace;
 
     private bool emitParticlesWhenSeekerFound = false;
 
     void Start() {
-        localRenderer = GetComponent<Renderer>();
+        // We actually need the renderer for the sprite
+        // Actually get a reference to SpriteFollowPlayer and make that do the work
+        playerSpriteManager = GetComponent<SpriteFollowPlayer>();
     }
 
     [Command]
@@ -30,7 +32,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 
         // This makes the player invisible
         // Should also make it so the other player can't run into them
-        localRenderer.enabled = false;
+        playerSpriteManager.MakeSpriteInvisible();
 
         currentHidingPlace = hidingPlace;
     }
@@ -61,7 +63,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         currentHidingPlace = null;
         emitParticlesWhenSeekerFound = false;
 
-        localRenderer.enabled = true;
+        playerSpriteManager.MakeSpriteVisible();
     }
 
     public void CmdCheckHidingPlace(GameObject hidingPlace) {
@@ -107,7 +109,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         // Almost the same as hiding normally, but let the player move
         hiding = true;
         stationary = false;
-        localRenderer.enabled = false;
+        playerSpriteManager.MakeSpriteInvisible();
         currentHidingPlace = hidingPlace;
     }
 }
