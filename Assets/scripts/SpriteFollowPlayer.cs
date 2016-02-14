@@ -50,6 +50,8 @@ public class SpriteFollowPlayer : MonoBehaviour {
         } else {
             // Seeker stuff here
             // TODO: This won't animate the non local player
+            seekerAnimator.SetFloat("velocity", velocity);
+            seekerAnimator.SetFloat("angle", angle);
         }
     }
 
