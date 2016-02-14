@@ -30,11 +30,13 @@ public class SpriteFollowPlayer : MonoBehaviour {
         }
 	}
 
-    public GameObject GetSprite() {
+    public void SetAnimationParams(float velocity, float angle) {
         if (id.IsHunter()) {
-            return hunterSprite;
+            hunterSprite.GetComponent<Animator>().SetFloat("velocity", velocity);
+            hunterSprite.GetComponent<Animator>().SetFloat("angle", angle);
         } else {
-            return seekerSprite;
+            // Seeker stuff here
+            // TODO: This won't animate the non local player
         }
     }
 }
