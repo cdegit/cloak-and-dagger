@@ -8,7 +8,7 @@ public class Alley : interactInRange {
 
     public override void SeekerInteraction(Collider thisPlayer) {
         // Teleport the seeker to the other end
-        thisPlayer.gameObject.transform.position = otherEnd.transform.position;
+        thisPlayer.gameObject.GetComponent<NavMeshAgent>().Warp(otherEnd.transform.position);
     }
 
     public override void HunterInteraction(Collider thisPlayer) {
