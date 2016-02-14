@@ -3,14 +3,15 @@ using System.Collections;
 
 public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
-    private float speedModifier = 0.4f;
-    private float defaultSpeedModifier = 0.4f;
-    private float hunterSpeedModifier = 0.6f;
+    private float speedModifier = 0.1f;
+    private float defaultSpeedModifier = 0.1f;
+    private float hunterSpeedModifier = 0.2f;
 
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;
     private HunterEcho hunterEchoAbility;
     private SpriteFollowPlayer sprite;
+    private PlayerIdentity id;
 
     private float lastAngle = 0;
 
@@ -23,6 +24,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         hidingManager = GetComponent<HidingManager>();
         hunterEchoAbility = GetComponent<HunterEcho>();
         sprite = GetComponent<SpriteFollowPlayer>();
+        id = GetComponent<PlayerIdentity>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
 
@@ -44,6 +46,12 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         // If they're sneaking through the grass
         if (hidingManager.IsHidingMovable()) {
             speedModifier = defaultSpeedModifier / 4;
+        } else {
+            speedModifier = defaultSpeedModifier;
+        }
+
+        if (id.IsHunter()) {
+            speedModifier = hunterSpeedModifier;
         } else {
             speedModifier = defaultSpeedModifier;
         }
