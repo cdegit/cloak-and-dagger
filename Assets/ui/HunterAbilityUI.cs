@@ -24,10 +24,12 @@ public class HunterAbilityUI : MonoBehaviour {
     void OnGUI() {
         // Player manager doesn't have the players on start
         if (!id) {
-            id = PlayerManager.instance.thisPlayer.GetComponent<PlayerIdentity>();
+            if (PlayerManager.instance.thisPlayer) {
+                id = PlayerManager.instance.thisPlayer.GetComponent<PlayerIdentity>();
+            }
         }
 
-        if (id.IsHunter()) {
+        if (id && id.IsHunter()) {
             GUI.Label(new Rect(50, Screen.height - 70, 100, 20), "Echo - Right click");
             GUI.DrawTexture(new Rect(50, Screen.height - 50, 100, 10), emptyProgressBar);
             GUI.DrawTexture(new Rect(50, Screen.height - 50, progress, 10), fullProgressBar);
