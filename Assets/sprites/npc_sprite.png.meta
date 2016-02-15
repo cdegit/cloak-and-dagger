@@ -1,13 +1,45 @@
 fileFormatVersion: 2
 guid: a53c34c0413ad9247b68225f4d1713ba
-timeCreated: 1455490870
+timeCreated: 1455493962
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: npc_sprite_0
+    21300002: npc_sprite_1
+    21300004: npc_sprite_2
+    21300006: npc_sprite_3
+    21300008: npc_sprite_4
+    21300010: npc_sprite_5
+    21300012: npc_sprite_6
+    21300014: npc_sprite_7
+    21300016: npc_sprite_8
+    21300018: npc_sprite_9
+    21300020: npc_sprite_10
+    21300022: npc_sprite_11
+    21300024: npc_sprite_12
+    21300026: npc_sprite_13
+    21300028: npc_sprite_14
+    21300030: npc_sprite_15
+    21300032: npc_sprite_16
+    21300034: npc_sprite_17
+    21300036: npc_sprite_18
+    21300038: npc_sprite_19
+    21300040: npc_sprite_20
+    21300042: npc_sprite_21
+    21300044: npc_sprite_22
+    21300046: npc_sprite_23
+    21300048: npc_sprite_24
+    21300050: npc_sprite_25
+    21300052: npc_sprite_26
+    21300054: npc_sprite_27
+    21300056: npc_sprite_28
+    21300058: npc_sprite_29
+    21300060: npc_sprite_30
+    21300062: npc_sprite_31
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,30 +58,620 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 0
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: npc_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 642
+        width: 61
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 65}
+        - {x: -30.5, y: -65}
+        - {x: 16.5, y: -65}
+        - {x: 30.5, y: -56}
+        - {x: 30.5, y: 65}
+    - name: npc_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 65}
+        - {x: -38.5, y: -65}
+        - {x: 38.5, y: -65}
+        - {x: 38.5, y: 21}
+        - {x: 16.5, y: 65}
+    - name: npc_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 65}
+        - {x: -38.5, y: -65}
+        - {x: 21.5, y: -65}
+        - {x: 38.5, y: -46}
+        - {x: 38.5, y: 57}
+        - {x: 17.5, y: 65}
+    - name: npc_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 65}
+        - {x: -38.5, y: -65}
+        - {x: 29.5, y: -65}
+        - {x: 38.5, y: -57}
+        - {x: 38.5, y: 25}
+        - {x: 20.5, y: 65}
+    - name: npc_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 638
+        width: 77
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 66.5}
+        - {x: -38.5, y: 59.5}
+        - {x: -38.5, y: -51.5}
+        - {x: -37.5, y: -57.5}
+        - {x: -28.5, y: -66.5}
+        - {x: 31.5, y: -66.5}
+        - {x: 38.5, y: -65.5}
+        - {x: 38.5, y: 53.5}
+        - {x: 36.5, y: 66.5}
+      - - {x: -17.5, y: -65.5}
+        - {x: -14.5, y: -64.5}
+        - {x: -14.5, y: -61.5}
+        - {x: -17.5, y: -60.5}
+        - {x: -19.5, y: -62.5}
+    - name: npc_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.5, y: 65}
+        - {x: -38.5, y: 64}
+        - {x: -38.5, y: -65}
+        - {x: 38.5, y: -65}
+        - {x: 38.5, y: 62}
+        - {x: 29.5, y: 65}
+    - name: npc_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 65}
+        - {x: -38.5, y: -65}
+        - {x: 28.5, y: -65}
+        - {x: 38.5, y: -53}
+        - {x: 38.5, y: 27}
+        - {x: 19.5, y: 65}
+    - name: npc_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 641
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38.5, y: 65}
+        - {x: -38.5, y: -65}
+        - {x: 38.5, y: -65}
+        - {x: 38.5, y: 21}
+        - {x: 16.5, y: 65}
+    - name: npc_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 450
+        width: 60
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 65}
+        - {x: -30, y: 53}
+        - {x: -30, y: -64}
+        - {x: -29, y: -65}
+        - {x: 30, y: -65}
+        - {x: 30, y: 61}
+        - {x: 26, y: 65}
+    - name: npc_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 64}
+        - {x: -30.5, y: -63}
+        - {x: -28.5, y: -64}
+        - {x: 17.5, y: -64}
+        - {x: 30.5, y: -58}
+        - {x: 30.5, y: 62}
+        - {x: 28.5, y: 64}
+    - name: npc_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: -64}
+        - {x: 19.5, y: -64}
+        - {x: 30.5, y: -54}
+        - {x: 30.5, y: 62}
+        - {x: 28.5, y: 64}
+        - {x: -13.5, y: 64}
+        - {x: -26.5, y: 60}
+        - {x: -30.5, y: 50}
+        - {x: -30.5, y: -64}
+        - {x: -6.5, y: -64}
+        - {x: -6.5, y: -61}
+        - {x: -6.5, y: -62}
+    - name: npc_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 64}
+        - {x: -30.5, y: -64}
+        - {x: 27.5, y: -64}
+        - {x: 30.5, y: -60}
+        - {x: 30.5, y: 60}
+        - {x: 26.5, y: 64}
+    - name: npc_sprite_12
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 447
+        width: 61
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 66}
+        - {x: -30.5, y: -66}
+        - {x: 15.5, y: -66}
+        - {x: 30.5, y: -53}
+        - {x: 30.5, y: 60}
+        - {x: 25.5, y: 66}
+    - name: npc_sprite_13
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 64}
+        - {x: -30.5, y: -64}
+        - {x: 27.5, y: -64}
+        - {x: 30.5, y: -60}
+        - {x: 30.5, y: 60}
+        - {x: 26.5, y: 64}
+    - name: npc_sprite_14
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5, y: -64}
+        - {x: 19.5, y: -64}
+        - {x: 30.5, y: -54}
+        - {x: 30.5, y: 62}
+        - {x: 28.5, y: 64}
+        - {x: -13.5, y: 64}
+        - {x: -26.5, y: 60}
+        - {x: -30.5, y: 50}
+        - {x: -30.5, y: -64}
+        - {x: -6.5, y: -64}
+        - {x: -6.5, y: -61}
+        - {x: -6.5, y: -62}
+    - name: npc_sprite_15
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 450
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 64}
+        - {x: -30.5, y: -63}
+        - {x: -28.5, y: -64}
+        - {x: 17.5, y: -64}
+        - {x: 30.5, y: -58}
+        - {x: 30.5, y: 62}
+        - {x: 28.5, y: 64}
+    - name: npc_sprite_16
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 249
+        width: 61
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 65}
+        - {x: -29.5, y: 57}
+        - {x: -30.5, y: 51}
+        - {x: -30.5, y: -65}
+        - {x: 30.5, y: -65}
+        - {x: 30.5, y: 55}
+        - {x: 22.5, y: 65}
+    - name: npc_sprite_17
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 65}
+        - {x: -38.5, y: 35}
+        - {x: -38.5, y: -53}
+        - {x: -19.5, y: -65}
+        - {x: 35.5, y: -65}
+        - {x: 38.5, y: -17}
+        - {x: 38.5, y: 57}
+        - {x: 28.5, y: 65}
+    - name: npc_sprite_18
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 65}
+        - {x: -24.5, y: 63}
+        - {x: -38.5, y: 23}
+        - {x: -38.5, y: -53}
+        - {x: -31.5, y: -65}
+        - {x: 34.5, y: -65}
+        - {x: 38.5, y: -14}
+        - {x: 38.5, y: 61}
+        - {x: 35.5, y: 65}
+    - name: npc_sprite_19
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 65}
+        - {x: -38.5, y: 45}
+        - {x: -38.5, y: -54}
+        - {x: -25.5, y: -65}
+        - {x: 29.5, y: -65}
+        - {x: 38.5, y: -40}
+        - {x: 38.5, y: 64}
+        - {x: 37.5, y: 65}
+    - name: npc_sprite_20
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 245
+        width: 77
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 66.5}
+        - {x: -38.5, y: 25.5}
+        - {x: -38.5, y: -54.5}
+        - {x: -23.5, y: -66.5}
+        - {x: 22.5, y: -66.5}
+        - {x: 38.5, y: -59.5}
+        - {x: 38.5, y: 55.5}
+        - {x: 27.5, y: 66.5}
+      - - {x: 16.5, y: -65.5}
+        - {x: 19.5, y: -64.5}
+        - {x: 19.5, y: -61.5}
+        - {x: 16.5, y: -60.5}
+        - {x: 14.5, y: -62.5}
+    - name: npc_sprite_21
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 65}
+        - {x: -38.5, y: 45}
+        - {x: -38.5, y: -59}
+        - {x: -29.5, y: -65}
+        - {x: 28.5, y: -65}
+        - {x: 38.5, y: -62}
+        - {x: 38.5, y: 54}
+        - {x: 27.5, y: 65}
+    - name: npc_sprite_22
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 65}
+        - {x: -38.5, y: 50}
+        - {x: -38.5, y: -65}
+        - {x: 38.5, y: -65}
+        - {x: 38.5, y: 61}
+        - {x: 29.5, y: 65}
+    - name: npc_sprite_23
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 248
+        width: 77
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 65}
+        - {x: -28.5, y: 22}
+        - {x: -38.5, y: -23}
+        - {x: -38.5, y: -38}
+        - {x: -21.5, y: -65}
+        - {x: 38.5, y: -65}
+        - {x: 38.5, y: 57}
+        - {x: 31.5, y: 65}
+    - name: npc_sprite_24
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 51
+        width: 59
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 65}
+        - {x: -29.5, y: -65}
+        - {x: 27.5, y: -65}
+        - {x: 29.5, y: -64}
+        - {x: 29.5, y: 65}
+    - name: npc_sprite_25
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 52
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 64}
+        - {x: -30.5, y: 62}
+        - {x: -30.5, y: -62}
+        - {x: -26.5, y: -64}
+        - {x: 30.5, y: -64}
+        - {x: 30.5, y: 45}
+        - {x: 17.5, y: 64}
+    - name: npc_sprite_26
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 52
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 64}
+        - {x: -30.5, y: 54}
+        - {x: -30.5, y: -60}
+        - {x: -21.5, y: -64}
+        - {x: 23.5, y: -64}
+        - {x: 30.5, y: -60}
+        - {x: 30.5, y: 46}
+        - {x: 18.5, y: 64}
+    - name: npc_sprite_27
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 51
+        width: 61
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 64.5}
+        - {x: -30.5, y: 63.5}
+        - {x: -30.5, y: -63.5}
+        - {x: -27.5, y: -64.5}
+        - {x: 25.5, y: -64.5}
+        - {x: 30.5, y: -53.5}
+        - {x: 30.5, y: 32.5}
+        - {x: 23.5, y: 64.5}
+    - name: npc_sprite_28
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 49
+        width: 62
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 66.5}
+        - {x: -31, y: -66.5}
+        - {x: 31, y: -66.5}
+        - {x: 31, y: 51.5}
+        - {x: 14, y: 66.5}
+    - name: npc_sprite_29
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 52
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 64}
+        - {x: -30.5, y: -47}
+        - {x: -26.5, y: -64}
+        - {x: 21.5, y: -64}
+        - {x: 30.5, y: -55}
+        - {x: 30.5, y: 61}
+        - {x: 21.5, y: 64}
+    - name: npc_sprite_30
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 52
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16.5, y: 64}
+        - {x: -28.5, y: 64}
+        - {x: -30.5, y: 62}
+        - {x: -30.5, y: -64}
+        - {x: 24.5, y: -64}
+        - {x: 30.5, y: -60}
+        - {x: 30.5, y: 41}
+        - {x: 28.5, y: 61}
+    - name: npc_sprite_31
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 52
+        width: 61
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 64}
+        - {x: -30.5, y: 59}
+        - {x: -30.5, y: -62}
+        - {x: -26.5, y: -64}
+        - {x: 30.5, y: -64}
+        - {x: 30.5, y: 58}
+        - {x: 22.5, y: 64}
     outline: []
   spritePackingTag: 
   userData: 

@@ -43,18 +43,6 @@ public class SpriteFollowPlayer : MonoBehaviour {
         }
 	}
 
-    public void SetAnimationParams(float velocity, float angle) {
-        if (id.IsHunter()) {
-            hunterAnimator.SetFloat("velocity", velocity);
-            hunterAnimator.SetFloat("angle", angle);
-        } else {
-            // Seeker stuff here
-            // TODO: This won't animate the non local player
-            seekerAnimator.SetFloat("velocity", velocity);
-            seekerAnimator.SetFloat("angle", angle);
-        }
-    }
-
     public void MakeSpriteInvisible() {
         if (id.IsHunter()) {
             hunterRenderer.enabled = false;

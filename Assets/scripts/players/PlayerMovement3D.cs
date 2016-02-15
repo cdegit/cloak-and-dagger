@@ -10,7 +10,6 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;
     private HunterEcho hunterEchoAbility;
-    private SpriteFollowPlayer sprite;
     private PlayerIdentity id;
 
     private float lastAngle = 0;
@@ -23,7 +22,6 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         navAgent = GetComponent<NavMeshAgent>();
         hidingManager = GetComponent<HidingManager>();
         hunterEchoAbility = GetComponent<HunterEcho>();
-        sprite = GetComponent<SpriteFollowPlayer>();
         id = GetComponent<PlayerIdentity>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
@@ -66,24 +64,5 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         Vector3 offset = new Vector3(horizontalSpeed * speedModifier, 0, verticalSpeed * speedModifier);
         
         navAgent.Move(offset);
-
-        DetermineAnimation(offset);
     }
-
-    void DetermineAnimation(Vector3 offset) {
-        float newMovementAngle = Vector3.Angle(offset, transform.right);
-        float velocity = Vector3.Magnitude(offset);
-
-        if (offset.z < 0) {
-            newMovementAngle = 360 - newMovementAngle;
-        }
-
-        if (velocity == 0) {
-            newMovementAngle = lastAngle;
-        }
-
-        sprite.SetAnimationParams(velocity, newMovementAngle);
-        lastAngle = newMovementAngle;
-    }
-    
 }
