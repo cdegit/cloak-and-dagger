@@ -5,7 +5,7 @@ using System.Collections;
 public class followTarget3D : MonoBehaviour {
     public Transform target = null;
 
-    private float offset = 3f;
+    private float offset = 11f;
 
     void FixedUpdate() {
         // GROSS DEPENDENCY: For the camera, target is set by the PlayerMovement script
