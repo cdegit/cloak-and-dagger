@@ -44,12 +44,6 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 
     [ClientRpc]
     private void RpcStopHiding() {
-        // Nudge the player slightly so we can see that they've left the hiding place
-        if (stationary) {
-            Vector3 nudgedPosition = transform.position + new Vector3(Random.Range(0f, 0.5f), 0, Random.Range(0f, 0.5f));
-            transform.position = nudgedPosition;
-        }
-
         // This is only set when the Hunter uses their echo ability at the moment
         if (emitParticlesWhenSeekerFound && currentHidingPlace) {
             ParticleEmitter emitter = currentHidingPlace.GetComponentInChildren<ParticleEmitter>();
