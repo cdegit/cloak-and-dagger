@@ -25,6 +25,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         id = GetComponent<PlayerIdentity>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
+		GameObject.Find("Minimap Camera").GetComponent<followTarget3D>().target = transform;
 
         transform.position = new Vector3(0, 1, 0);
     }

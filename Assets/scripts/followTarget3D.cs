@@ -5,7 +5,15 @@ using System.Collections;
 public class followTarget3D : MonoBehaviour {
     public Transform target = null;
 
-    private float offset = 11f;
+	// If this is the main camera, use an offset
+	// If this is the minimap, use none
+    private float offset = 0f;
+
+	void Start() {
+		if (gameObject.tag == "MainCamera") {
+			offset = 11f;
+		}
+	}
 
     void FixedUpdate() {
         // GROSS DEPENDENCY: For the camera, target is set by the PlayerMovement script
