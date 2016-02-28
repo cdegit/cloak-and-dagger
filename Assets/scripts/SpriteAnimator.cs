@@ -11,7 +11,7 @@ public class SpriteAnimator : MonoBehaviour {
         previousPosition = transform.position;
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         Vector3 offset = transform.position - previousPosition;
 
         float angle = Vector3.Angle(offset, transform.right);
