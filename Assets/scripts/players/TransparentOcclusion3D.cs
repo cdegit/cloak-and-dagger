@@ -8,17 +8,19 @@ public class TransparentOcclusion3D : MonoBehaviour {
         // If the ray hits something that can occlude the player along the way, try to activate its Transparent Occlusion Handler
         // This will make the other object fade to 50% opacity
         RaycastHit hitInfo;
+		RaycastHit[] hits;
 
-        if (Physics.Linecast(Camera.main.transform.position, transform.position, out hitInfo)) {
-            // Currently the object needs to have both the tag and the script
-            // The script alone may be sufficient
-            if (hitInfo.collider.CompareTag("Occludable")) {
-                TransparentOcclusionHandler occludingObjectHandler = hitInfo.collider.gameObject.GetComponent<TransparentOcclusionHandler>();
+		hits = Physics.RaycastAll(transform.position, (Camera.main.transform.position - transform.position), 100.0f);
 
-                if (occludingObjectHandler) {
-                    occludingObjectHandler.BecomeTranslucent();
-                }
-            }
-        }
+		// TODO: Maybe cast from the ends of the sprite rather than the center, so the effect is a little cleaner
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit hit = hits[i];
+			TransparentOcclusionHandler occludingObjectHandler = hit.collider.gameObject.GetComponent<TransparentOcclusionHandler>();
+
+			if (occludingObjectHandler) {
+				occludingObjectHandler.BecomeTranslucent();
+				occludingObjectHandler.SetSortingOrder(i + 1);
+			}
+		}
     }
 }
