@@ -1,4 +1,4 @@
-﻿ Shader "Custom/Outline_2DSprite" 
+﻿ Shader "Outlined/Outline_2DSprite" 
   {
        Properties 
        {

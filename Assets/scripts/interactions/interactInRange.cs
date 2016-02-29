@@ -11,7 +11,7 @@ public class interactInRange : MonoBehaviour {
 
     protected GameObject otherPlayer;
 
-	protected SpriteRenderer localSpriteRenderer;
+	protected Renderer localRenderer;
 	protected bool triedToFindRenderer = false;
 
 
@@ -21,25 +21,33 @@ public class interactInRange : MonoBehaviour {
         }
 
 		if (!triedToFindRenderer) {
-			localSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-			triedToFindRenderer = true;
+			localRenderer = GetComponentInChildren<SpriteRenderer>() as Renderer;
 
-			if (localSpriteRenderer) {
-				originalMaterial = localSpriteRenderer.material;
+			// If there wasn't a sprite, there should be a mesh renderer to use
+			if (!localRenderer) {
+				localRenderer = GetComponent<Renderer>();
 			}
+
+			// Just in case we still haven't found one...
+			if (localRenderer) {
+				originalMaterial = localRenderer.material;
+			}
+
+			// If there just isn't one, don't keep looking
+			triedToFindRenderer = true;
 		}
     }
 
     void OnTriggerEnter(Collider other) {
         // Highlight this object
-		if (localSpriteRenderer) {
-			localSpriteRenderer.material = outlineMaterial;
+		if (localRenderer) {
+			localRenderer.material = outlineMaterial;
 		}
     }
 
     void OnTriggerExit(Collider other) {
-		if (localSpriteRenderer) {
-			localSpriteRenderer.material = originalMaterial;
+		if (localRenderer) {
+			localRenderer.material = originalMaterial;
 		}
     }
 
