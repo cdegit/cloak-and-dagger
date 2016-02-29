@@ -2,35 +2,45 @@
 using System.Collections;
 
 // This script requires that the game object it is attached to has:
-//     a Renderer
 //     a Collider set to trigger
+// If it or a child has a sprite renderer, a yellow outline will appear around the object when the player is in range
 
 public class interactInRange : MonoBehaviour {
-    private Renderer localRenderer;
+	public Material outlineMaterial;
+	private Material originalMaterial;
+
     protected GameObject otherPlayer;
 
-    void Start() {
-        localRenderer = GetComponent<Renderer>();
-    }
+	protected SpriteRenderer localSpriteRenderer;
+	protected bool triedToFindRenderer = false;
+
 
     void Update() {
         if (!otherPlayer) {
             otherPlayer = PlayerManager.instance.otherPlayer;
         }
+
+		if (!triedToFindRenderer) {
+			localSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+			triedToFindRenderer = true;
+
+			if (localSpriteRenderer) {
+				originalMaterial = localSpriteRenderer.material;
+			}
+		}
     }
 
     void OnTriggerEnter(Collider other) {
-        // highlight this object
-        // show a GUI instruction (maybe)
-        if (localRenderer) {
-            localRenderer.material.color = Color.red;
-        }
+        // Highlight this object
+		if (localSpriteRenderer) {
+			localSpriteRenderer.material = outlineMaterial;
+		}
     }
 
     void OnTriggerExit(Collider other) {
-        if (localRenderer) {
-            localRenderer.material.color = Color.white;
-        }
+		if (localSpriteRenderer) {
+			localSpriteRenderer.material = originalMaterial;
+		}
     }
 
     // Note: For this to work, the rigidbody in the player must be set to never sleep
