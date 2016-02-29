@@ -9,6 +9,11 @@ public class Alley : interactInRange {
     public override void SeekerInteraction(Collider thisPlayer) {
         // Teleport the seeker to the other end
         thisPlayer.gameObject.GetComponent<NavMeshAgent>().Warp(otherEnd.transform.position);
+
+		// Lerp the camera position
+		// Somehow
+		Debug.Log("Warp the seeker");
+		Camera.main.GetComponent<followTarget3D>().TargetWarped();
     }
 
     public override void HunterInteraction(Collider thisPlayer) {
