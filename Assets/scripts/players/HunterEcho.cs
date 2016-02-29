@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class HunterEcho : MonoBehaviour {
+public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
     private int layerIndex = 9;
     private int hidingPlaceLayerMask;
 
@@ -75,10 +76,16 @@ public class HunterEcho : MonoBehaviour {
             }
         }
 
-        echoParticleEmitter.Emit();
+		RpcRenderEchoEffect();
     }
 
     public bool CanHunterMove() {
         return echoMovementCooldownTimer >= echoMovementCooldownTime;
     }
+
+	[ClientRpc]
+	private void RpcRenderEchoEffect() {
+		// Moved this into an RPC so the effect should be shown on both clients
+		echoParticleEmitter.Emit();
+	}
 }
