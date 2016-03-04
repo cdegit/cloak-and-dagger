@@ -3,13 +3,17 @@ using System.Collections;
 
 public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
-    private float defaultSpeedModifier = 0.1f;
-    private float hunterSpeedModifier = 0.2f;
+    private float defaultSpeed = 0.1f;
+    private float hunterSpeed = 0.2f;
+	private float waterSpeedModifier = 0.5f;
+
+	private bool inWater = false;
 
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;
     private HunterEcho hunterEchoAbility;
     private PlayerIdentity id;
+	private SpriteFollowPlayer spriteManager;
 
     void Start() {
         if (!isLocalPlayer) {
@@ -20,6 +24,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         hidingManager = GetComponent<HidingManager>();
         hunterEchoAbility = GetComponent<HunterEcho>();
         id = GetComponent<PlayerIdentity>();
+		spriteManager = GetComponent<SpriteFollowPlayer>();
 
         Camera.main.GetComponent<followTarget3D>().target = transform;
 		GameObject.Find("Minimap Camera").GetComponent<followTarget3D>().target = transform;
@@ -28,16 +33,22 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
     }
 
 	float GetCurrentSpeed() {
+		float currentSpeed = defaultSpeed;
+
 		if (id.IsHunter()) {
-			return hunterSpeedModifier;
+			currentSpeed = hunterSpeed;
 		}
 
 		// If they're sneaking through the grass
 		if (hidingManager.IsHidingMovable()) {
-			return defaultSpeedModifier / 2;
+			currentSpeed = defaultSpeed / 2;
 		}
 
-		return defaultSpeedModifier;
+		if (inWater) {
+			currentSpeed *= waterSpeedModifier;
+		}
+
+		return currentSpeed;
 	}
 
     void FixedUpdate() {
@@ -65,4 +76,14 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         
         navAgent.Move(offset);
     }
+
+	public void EnterWater() {
+		inWater = true;
+		spriteManager.EnterWater();
+	}
+
+	public void ExitWater() {
+		inWater = false;
+		spriteManager.ExitWater();
+	}
 }

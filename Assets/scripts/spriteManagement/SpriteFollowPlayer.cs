@@ -3,7 +3,6 @@ using System.Collections;
 
 // TODO: Rename to player sprite manager or something
 public class SpriteFollowPlayer : MonoBehaviour {
-    
     private GameObject hunterSprite;
     private GameObject seekerSprite;
 
@@ -14,6 +13,8 @@ public class SpriteFollowPlayer : MonoBehaviour {
     private Renderer seekerRenderer;
 
     private PlayerIdentity id;
+
+	private bool inWater = false;
 
     void Start() {
         id = GetComponent<PlayerIdentity>();
@@ -31,9 +32,18 @@ public class SpriteFollowPlayer : MonoBehaviour {
 
     void Update() {
         if (id.IsHunter()) {
-            hunterSprite.transform.position = transform.position + new Vector3(0, hunterOffset, 0);
+			if (inWater) {
+				// TODO: Lerp getting in and out of the water
+				hunterSprite.transform.position = transform.position + new Vector3(0, hunterOffset/2, 0);
+			} else {
+				hunterSprite.transform.position = transform.position + new Vector3(0, hunterOffset, 0);
+			}
         } else {
-            seekerSprite.transform.position = transform.position + new Vector3(0, seekerOffset, 0);
+			if (inWater) {
+				seekerSprite.transform.position = transform.position + new Vector3(0, seekerOffset/2, 0);
+			} else {
+				seekerSprite.transform.position = transform.position + new Vector3(0, seekerOffset, 0);
+			}
         }
 	}
 
@@ -52,4 +62,12 @@ public class SpriteFollowPlayer : MonoBehaviour {
             seekerRenderer.enabled = true;
         }
     }
+
+	public void EnterWater() {
+		inWater = true;
+	}
+
+	public void ExitWater() {
+		inWater = false;
+	}
 }
