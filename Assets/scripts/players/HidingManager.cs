@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private bool hiding = false;
-    private bool stationary = false;
+	private bool hidingInArea = false;
 
     private SpriteFollowPlayer playerSpriteManager;
     public GameObject currentHidingPlace;
@@ -17,25 +17,55 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         playerSpriteManager = GetComponent<SpriteFollowPlayer>();
     }
 
-    [Command]
-    public void CmdHide(GameObject hidingPlace) {
-        currentHidingPlace = hidingPlace;
-        RpcHide(hidingPlace);
-    }
+	[Command]
+	public void CmdHideInObject(GameObject hidingPlace) {
+		// stores a reference to the object and uses that
+		RpcHideInObject(hidingPlace);
+	}
 
-    [ClientRpc]
-    private void RpcHide(GameObject hidingPlace) {
-        // By making this an RPC, it gets executed on both clients
-        // This will disable player movement
-        hiding = true;
-        stationary = true;
+	[Command]
+	public void CmdHideInArea() {
+		// doesn't store a reference to the object - maybe stores location instead?
+		// grass and water shouldn't move
+		RpcHideInArea();
+	}
 
-        // This makes the player invisible
-        // Should also make it so the other player can't run into them
-        playerSpriteManager.MakeSpriteInvisible();
+	[ClientRpc]
+	private void RpcHideInObject(GameObject hidingPlace) {
+		currentHidingPlace = hidingPlace;
+		hide();
+	}
 
-        currentHidingPlace = hidingPlace;
-    }
+	[ClientRpc]
+	private void RpcHideInArea() {
+		hidingInArea = true;
+		hide();
+	}
+
+	private void hide() {
+		// This makes the player invisible
+		// Should also make it so the other player can't run into them
+		playerSpriteManager.MakeSpriteInvisible();
+		hiding = true;
+	}
+
+	public void CheckHidingPlace(GameObject hidingPlace) {
+		// If they're hiding in an area, this is only called if the hunter is close enough
+		// Should the hunter be responsible for that?
+		if (hidingInArea) {
+			CmdStopHiding();
+		}
+
+		if (!currentHidingPlace) {
+			return;
+		}
+
+		// Check if the Seeker is hiding in the same hiding place the Hunter is currently checking
+		// If they are the same, kick the Seeker out of their hiding place
+		if (currentHidingPlace.GetInstanceID() == hidingPlace.GetInstanceID()) {
+			CmdStopHiding();
+		}
+	}
 
     [Command]
     public void CmdStopHiding() {
@@ -46,6 +76,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     private void RpcStopHiding() {
         // This is only set when the Hunter uses their echo ability at the moment
         if (emitParticlesWhenSeekerFound && currentHidingPlace) {
+			// Could move the emitter to the player instead, then it'll always be in the right place...
             ParticleEmitter emitter = currentHidingPlace.GetComponentInChildren<ParticleEmitter>();
             if (emitter) {
                 emitter.Emit();
@@ -53,23 +84,11 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         }
 
         hiding = false;
-        stationary = false;
+		hidingInArea = false;
         currentHidingPlace = null;
         emitParticlesWhenSeekerFound = false;
 
         playerSpriteManager.MakeSpriteVisible();
-    }
-
-    public void CmdCheckHidingPlace(GameObject hidingPlace) {
-        // Check if the Seeker is hiding in the same hiding place the Hunter is currently checking
-        // If they are the same, kick the Seeker out of their hiding place
-        if (!currentHidingPlace) {
-            return;
-        }
-
-        if (currentHidingPlace.GetInstanceID() == hidingPlace.GetInstanceID()) {
-            CmdStopHiding();
-        }
     }
 
     public void EmitParticlesOnNextFind() {
@@ -81,29 +100,10 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     }
 
     public bool IsHidingStationary() {
-        return hiding && stationary;
+		return hiding && !hidingInArea;
     }
 
     public bool IsHidingMovable() {
-        return hiding && !stationary;
-    }
-
-    public Vector3 GetHidingPosition() {
-        return currentHidingPlace.transform.position;
-    }
-
-    [Command]
-    public void CmdHideInGrass(GameObject hidingPlace) {
-        currentHidingPlace = hidingPlace;
-        RpcHideInGrass(hidingPlace);
-    }
-
-    [ClientRpc]
-    private void RpcHideInGrass(GameObject hidingPlace) {
-        // Almost the same as hiding normally, but let the player move
-        hiding = true;
-        stationary = false;
-        playerSpriteManager.MakeSpriteInvisible();
-        currentHidingPlace = hidingPlace;
+		return hiding && hidingInArea;
     }
 }

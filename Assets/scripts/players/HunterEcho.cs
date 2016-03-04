@@ -70,7 +70,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
                 // Kick the Seeker out of their hiding place
                 if (hidingManager) {
                     hidingManager.EmitParticlesOnNextFind();
-                    hidingManager.CmdCheckHidingPlace(hitColliders[i].gameObject);
+                    hidingManager.CheckHidingPlace(hitColliders[i].gameObject);
                 }
                 i++;
             }

@@ -15,7 +15,7 @@ public class HideIn : interactInRange {
         // Put the Seeker into hiding mode
         // Don't let them move and make them invisible
         if (!hidingManager.IsHiding()) {
-            hidingManager.CmdHide(basketGameObject);
+            hidingManager.CmdHideInObject(basketGameObject);
         } else {
             hidingManager.CmdStopHiding();
         }
@@ -25,6 +25,6 @@ public class HideIn : interactInRange {
         // If the Seeker is in this hiding place, remove them from hiding but don't immediately capture them
         // Call on the seeker object because it was easier thanks to networking issues....
         HidingManager hidingManager = otherPlayer.gameObject.GetComponent<HidingManager>();
-        hidingManager.CmdCheckHidingPlace(basketGameObject);
+        hidingManager.CheckHidingPlace(basketGameObject);
     }
 }

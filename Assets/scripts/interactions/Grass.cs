@@ -2,17 +2,11 @@
 using System.Collections;
 
 public class Grass : interactInRange {
-    private GameObject grassGameObject;
-
-    void Start() {
-        grassGameObject = gameObject;
-    }
-
     public override void SeekerInteraction(Collider thisPlayer) {
         HidingManager hidingManager = thisPlayer.gameObject.GetComponent<HidingManager>();
 
         if (!hidingManager.IsHiding()) {
-            hidingManager.CmdHideInGrass(grassGameObject);
+            hidingManager.CmdHideInArea();
         } else {
             hidingManager.CmdStopHiding();
         }
@@ -22,7 +16,8 @@ public class Grass : interactInRange {
         // Na da
     }
 
-    void OnTriggerExit(Collider thisPlayer) {
+	public override void OnTriggerExit(Collider thisPlayer) {
+		base.OnTriggerExit(thisPlayer);
         // Leave grass when the player walks outside
         HidingManager hidingManager = thisPlayer.gameObject.GetComponent<HidingManager>();
         hidingManager.CmdStopHiding();

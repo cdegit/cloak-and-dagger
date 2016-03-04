@@ -38,25 +38,22 @@ public class interactInRange : MonoBehaviour {
 		}
     }
 
-    void OnTriggerEnter(Collider other) {
+    public virtual void OnTriggerEnter(Collider other) {
         // Highlight this object
 		if (localRenderer) {
 			localRenderer.material = outlineMaterial;
 		}
     }
 
-    void OnTriggerExit(Collider other) {
+    public virtual void OnTriggerExit(Collider other) {
 		if (localRenderer) {
 			localRenderer.material = originalMaterial;
 		}
     }
 
-    // Note: For this to work, the rigidbody in the player must be set to never sleep
-    // Otherwise this just isn't fired
-    void OnTriggerStay (Collider other) {
+    public virtual void OnTriggerStay (Collider other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonUp("Fire1")) {
             PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
-            
             
             // Need to make sure that the input only affects the appropriate player
             if (id.IsThisPlayer()) {

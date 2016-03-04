@@ -10,9 +10,6 @@ public class SpriteFollowPlayer : MonoBehaviour {
     private float hunterOffset;
     private float seekerOffset;
 
-    private Animator hunterAnimator;
-    private Animator seekerAnimator;
-
     private Renderer hunterRenderer;
     private Renderer seekerRenderer;
 
@@ -29,9 +26,6 @@ public class SpriteFollowPlayer : MonoBehaviour {
 
         hunterOffset = hunterRenderer.bounds.size.y / 2;
         seekerOffset = seekerRenderer.bounds.size.y / 2;
-
-        hunterAnimator = hunterSprite.GetComponent<Animator>();
-        seekerAnimator = seekerSprite.GetComponent<Animator>();
     }
     
 
