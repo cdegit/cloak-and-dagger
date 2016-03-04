@@ -9,6 +9,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 	private bool hidingInArea = false;
 
     private SpriteFollowPlayer playerSpriteManager;
+	private Renderer minimapSpriteRenderer;
 	private ParticleEmitter seekerParticleEmitter;
 
     private bool emitParticlesWhenSeekerFound = false;
@@ -17,6 +18,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         // We actually need the renderer for the sprite
         // Actually get a reference to SpriteFollowPlayer and make that do the work
         playerSpriteManager = GetComponent<SpriteFollowPlayer>();
+		minimapSpriteRenderer = transform.Find("Minimap Icon").GetComponent<Renderer>();
 		seekerParticleEmitter = transform.Find("Echo'd Particle Emitter").GetComponent<ParticleEmitter>();
     }
 
@@ -49,6 +51,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 		// This makes the player invisible
 		// Should also make it so the other player can't run into them
 		playerSpriteManager.MakeSpriteInvisible();
+		minimapSpriteRenderer.enabled = false;
 		hiding = true;
 	}
 
@@ -90,6 +93,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         emitParticlesWhenSeekerFound = false;
 
         playerSpriteManager.MakeSpriteVisible();
+		minimapSpriteRenderer.enabled = true;
     }
 
     public void EmitParticlesOnNextFind() {
