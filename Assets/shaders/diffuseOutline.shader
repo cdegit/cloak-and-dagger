@@ -68,7 +68,7 @@ ENDCG
 		Pass {
 			Name "BASE"
 			ZWrite On
-			ZTest LEqual
+			//ZTest LEqual
 			Blend SrcAlpha OneMinusSrcAlpha
 			Material {
 				Diffuse [_Color]

@@ -40,7 +40,7 @@ public class interactInRange : MonoBehaviour {
 
     public virtual void OnTriggerEnter(Collider other) {
         // Highlight this object
-		if (localRenderer) {
+		if (localRenderer && outlineMaterial) {
 			localRenderer.material = outlineMaterial;
 		}
     }
