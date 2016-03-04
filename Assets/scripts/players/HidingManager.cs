@@ -3,11 +3,13 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
+	public GameObject currentHidingPlace;
+
     private bool hiding = false;
 	private bool hidingInArea = false;
 
     private SpriteFollowPlayer playerSpriteManager;
-    public GameObject currentHidingPlace;
+	private ParticleEmitter seekerParticleEmitter;
 
     private bool emitParticlesWhenSeekerFound = false;
 
@@ -15,6 +17,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         // We actually need the renderer for the sprite
         // Actually get a reference to SpriteFollowPlayer and make that do the work
         playerSpriteManager = GetComponent<SpriteFollowPlayer>();
+		seekerParticleEmitter = transform.Find("Echo'd Particle Emitter").GetComponent<ParticleEmitter>();
     }
 
 	[Command]
@@ -75,11 +78,9 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
     [ClientRpc]
     private void RpcStopHiding() {
         // This is only set when the Hunter uses their echo ability at the moment
-        if (emitParticlesWhenSeekerFound && currentHidingPlace) {
-			// Could move the emitter to the player instead, then it'll always be in the right place...
-            ParticleEmitter emitter = currentHidingPlace.GetComponentInChildren<ParticleEmitter>();
-            if (emitter) {
-                emitter.Emit();
+        if (emitParticlesWhenSeekerFound) {
+			if (seekerParticleEmitter) {
+				seekerParticleEmitter.Emit();
             }
         }
 
