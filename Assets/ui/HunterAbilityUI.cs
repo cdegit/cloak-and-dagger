@@ -13,6 +13,9 @@ public class HunterAbilityUI : MonoBehaviour {
     private float progress = 100;
 
     private PlayerIdentity id;
+	private PlayerMovement3D movement;
+
+	private GUIStyle style;
 
     void Awake() {
         if (instance == null) {
@@ -24,18 +27,29 @@ public class HunterAbilityUI : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+	void Start() {
+		style = new GUIStyle();
+		style.fontSize = 24;
+		style.normal.textColor = Color.white;
+	}
+
     void OnGUI() {
         // Player manager doesn't have the players on start
         if (!id) {
             if (PlayerManager.instance.thisPlayer) {
                 id = PlayerManager.instance.thisPlayer.GetComponent<PlayerIdentity>();
+				movement = PlayerManager.instance.thisPlayer.GetComponent<PlayerMovement3D>();
             }
         }
 
         if (id && id.IsHunter()) {
-            GUI.Label(new Rect(50, Screen.height - 70, 100, 20), "Echo - Right click");
+            GUI.Label(new Rect(50, Screen.height - 70, 100, 20), "Echo");
             GUI.DrawTexture(new Rect(50, Screen.height - 50, 100, 10), emptyProgressBar);
             GUI.DrawTexture(new Rect(50, Screen.height - 50, progress, 10), fullProgressBar);
+
+			if (movement.hunterStartCountdown > 0) {
+				GUI.Label(new Rect(Screen.width/2 - 50, Screen.height/2 - 20, 100, 40), movement.hunterStartCountdown.ToString("F2"), style);
+			}
         }
 
 		// Graphics.DrawTexture should only be called at specific times

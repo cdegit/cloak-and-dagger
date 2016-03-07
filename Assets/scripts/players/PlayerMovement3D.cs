@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
+	public float hunterStartCountdown = 2f;
 
     private float defaultSpeed = 0.1f;
     private float hunterSpeed = 0.2f;
@@ -54,6 +55,8 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
             return;
         }
 
+		// On game start, stop the Hunter from moving for a couple of seconds
+
         if (hidingManager.IsHidingStationary()) {
             // Set the seeker's position to the position of whatever they're hiding in
             // This is mostly so that they'll move with whatever crowd they're in
@@ -64,6 +67,11 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         if (!hunterEchoAbility.CanHunterMove()) {
             return;
         }
+
+		if (id.IsHunter() && hunterStartCountdown > 0) {
+			hunterStartCountdown -= Time.deltaTime;
+			return;
+		}
 
         float verticalSpeed = Input.GetAxis("Vertical");
         float horizontalSpeed = Input.GetAxis("Horizontal");
