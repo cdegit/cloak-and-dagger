@@ -32,12 +32,22 @@ public class PlayerIdentity : UnityEngine.Networking.NetworkBehaviour {
     }
 
     void InitAsHunter () {
-        localRenderer.material.color = Color.red;
-        isHunter = true;
+		GameObject spawn = GameObject.Find("Hunter Spawn Point");
+
+		if (spawn) {
+			GetComponent<NavMeshAgent>().Warp(spawn.transform.position);
+		}
+
+		isHunter = true;
     }
 
     void InitAsSeeker () {
-        localRenderer.material.color = Color.blue;
+		GameObject spawn = GameObject.Find("Seeker Spawn Point");
+
+		if (spawn) {
+			GetComponent<NavMeshAgent>().Warp(spawn.transform.position);
+		}
+
         isHunter = false;
     }
 
