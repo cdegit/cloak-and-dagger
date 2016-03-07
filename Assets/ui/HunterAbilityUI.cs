@@ -10,6 +10,8 @@ public class HunterAbilityUI : MonoBehaviour {
 	public RenderTexture minimapTexture;
 	public Material minimapMaterial;
 
+	public float minimapDiameter = 200;
+
     private float progress = 100;
 
     private PlayerIdentity id;
@@ -56,7 +58,7 @@ public class HunterAbilityUI : MonoBehaviour {
 		// Using Graphics.DrawTexture instead of GUI.DrawTexture so we can use the material which gives us the mask
 		// Referenced this tutorial for creating the minimap: https://youtu.be/ZuV9Xlt-l6g
 		if (Event.current.type.Equals (EventType.Repaint)) {
-			Graphics.DrawTexture (new Rect (Screen.width - 175, 25, 150, 150), minimapTexture, minimapMaterial);
+			Graphics.DrawTexture (new Rect (Screen.width - (minimapDiameter + 25), 25, minimapDiameter, minimapDiameter), minimapTexture, minimapMaterial);
 		}
     }
 
