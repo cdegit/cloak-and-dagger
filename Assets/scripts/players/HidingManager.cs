@@ -95,11 +95,14 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         }
 
 		if (currentHidingPlace) {
-			Animator anim = currentHidingPlace.GetComponentInChildren<Animator>();
-			if (anim) {
-				// If we're playing the animation, don't show the player or let them move right away
-				anim.Play("get out");
-				return;
+			Transform basketSprite = currentHidingPlace.transform.Find("Basket Sprite");
+			if (basketSprite) {
+				Animator anim = basketSprite.gameObject.GetComponent<Animator>();
+				if (anim) {
+					// If we're playing the animation, don't show the player or let them move right away
+					anim.Play("get out");
+					return;
+				}
 			}
 			currentHidingPlace.GetComponent<interactInRange>().ShowOutline();
 		}
