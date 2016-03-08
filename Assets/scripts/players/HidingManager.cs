@@ -95,21 +95,33 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
         }
 
 		if (currentHidingPlace) {
-//			Animator anim = currentHidingPlace.GetComponentInChildren<Animator>();
-//			if (anim) {
-//				anim.Play("get out");
-//			}
+			Animator anim = currentHidingPlace.GetComponentInChildren<Animator>();
+			if (anim) {
+				// If we're playing the animation, don't show the player or let them move right away
+				anim.Play("get out");
+				return;
+			}
 			currentHidingPlace.GetComponent<interactInRange>().ShowOutline();
 		}
 
-        hiding = false;
-		hidingInArea = false;
-        currentHidingPlace = null;
-        emitParticlesWhenSeekerFound = false;
-
-        playerSpriteManager.MakeSpriteVisible();
-		minimapSpriteRenderer.enabled = true;
+		RpcResetHidingVars();
     }
+
+	[Command]
+	public void CmdFinishedAnimation() {
+		RpcResetHidingVars();
+	}
+
+	[ClientRpc]
+	private void RpcResetHidingVars() {
+		hiding = false;
+		hidingInArea = false;
+		currentHidingPlace = null;
+		emitParticlesWhenSeekerFound = false;
+
+		playerSpriteManager.MakeSpriteVisible();
+		minimapSpriteRenderer.enabled = true;
+	}
 
     public void EmitParticlesOnNextFind() {
         emitParticlesWhenSeekerFound = true;

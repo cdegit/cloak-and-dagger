@@ -49,7 +49,6 @@ public class interactInRange : MonoBehaviour {
     public virtual void OnTriggerStay (Collider other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonUp("Fire1")) {
             PlayerIdentity id = other.gameObject.GetComponent<PlayerIdentity>();
-			HidingManager hidingManager = other.gameObject.GetComponent<HidingManager>();
             
             // Need to make sure that the input only affects the appropriate player
             if (id.IsThisPlayer()) {
