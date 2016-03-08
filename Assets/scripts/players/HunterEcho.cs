@@ -53,7 +53,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
             echoMovementCooldownTimer += Time.deltaTime;
         }
 
-        HunterAbilityUI.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
+		UIManager.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
     }
 
     // Send out a circle to some distance
