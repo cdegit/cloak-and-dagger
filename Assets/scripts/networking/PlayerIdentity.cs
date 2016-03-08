@@ -12,7 +12,7 @@ public class PlayerIdentity : UnityEngine.Networking.NetworkBehaviour {
 
         // TODO: Object interactions break if this is !isServer
         // Look into that...
-        if (isServer) {
+        if (!isServer) {
             if (isLocalPlayer) {
                 InitAsHunter();
             } else {

@@ -37,6 +37,13 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 
 	[ClientRpc]
 	private void RpcHideInObject(GameObject hidingPlace) {
+		Animator anim = hidingPlace.GetComponentInChildren<Animator>();
+		if (anim) {
+			anim.Play("get in");
+		}
+
+		hidingPlace.GetComponent<interactInRange>().HideOutline();
+
 		currentHidingPlace = hidingPlace;
 		hide();
 	}
@@ -86,6 +93,14 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 				seekerParticleEmitter.Emit();
             }
         }
+
+		if (currentHidingPlace) {
+//			Animator anim = currentHidingPlace.GetComponentInChildren<Animator>();
+//			if (anim) {
+//				anim.Play("get out");
+//			}
+			currentHidingPlace.GetComponent<interactInRange>().ShowOutline();
+		}
 
         hiding = false;
 		hidingInArea = false;

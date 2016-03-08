@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9f6aa5836ded60841ad58039fe01acd0
-timeCreated: 1457332427
+timeCreated: 1457403649
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -64,49 +64,51 @@ TextureImporter:
         y: 70
         width: 78
         height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -24, y: 55.5}
-        - {x: -39, y: 47.5}
-        - {x: -39, y: -55.5}
-        - {x: 39, y: -55.5}
-        - {x: 39, y: 55.5}
+      - - {x: -24, y: 111}
+        - {x: -39, y: 103}
+        - {x: -39, y: 0}
+        - {x: 39, y: 0}
+        - {x: 39, y: 111}
     - name: basket_sprite_1
       rect:
         serializedVersion: 2
         x: 248
-        y: 70
+        y: 71
         width: 78
         height: 167
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -35, y: 83.5}
-        - {x: -39, y: 79.5}
-        - {x: -39, y: -83.5}
-        - {x: 29, y: -83.5}
-        - {x: 39, y: -77.5}
-        - {x: 39, y: 83.5}
+      - - {x: -29, y: 167}
+        - {x: -39, y: 162}
+        - {x: -39, y: 0}
+        - {x: 39, y: 0}
+        - {x: 39, y: 162}
+        - {x: 23, y: 167}
     - name: basket_sprite_2
       rect:
         serializedVersion: 2
         x: 419
-        y: 70
+        y: 71
         width: 80
         height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -39, y: 79}
-        - {x: -40, y: 77}
-        - {x: -40, y: -79}
-        - {x: 34, y: -79}
-        - {x: 40, y: -68}
-        - {x: 40, y: 79}
+      - - {x: -36, y: 158}
+        - {x: -40, y: 154}
+        - {x: -40, y: 6}
+        - {x: -31, y: 0}
+        - {x: 29, y: 0}
+        - {x: 40, y: 13}
+        - {x: 40, y: 156}
+        - {x: 25, y: 158}
     - name: basket_sprite_3
       rect:
         serializedVersion: 2
@@ -114,34 +116,33 @@ TextureImporter:
         y: 71
         width: 78
         height: 143
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -29, y: 71.5}
-        - {x: -39, y: 68.5}
-        - {x: -39, y: -63.5}
-        - {x: -36, y: -71.5}
-        - {x: 29, y: -71.5}
-        - {x: 39, y: -64.5}
-        - {x: 39, y: 71.5}
+      - - {x: -29, y: 143}
+        - {x: -39, y: 140}
+        - {x: -39, y: 8}
+        - {x: -36, y: 0}
+        - {x: 29, y: 0}
+        - {x: 39, y: 7}
+        - {x: 39, y: 143}
     - name: basket_sprite_4
       rect:
         serializedVersion: 2
-        x: 752
-        y: 71
+        x: 751
+        y: 72
         width: 78
         height: 132
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -37, y: 66}
-        - {x: -39, y: 64}
-        - {x: -39, y: -66}
-        - {x: 31, y: -66}
-        - {x: 39, y: -61}
-        - {x: 39, y: 66}
+      - - {x: -39, y: 132}
+        - {x: -39, y: 0}
+        - {x: 39, y: 0}
+        - {x: 39, y: 131}
+        - {x: 22, y: 132}
     - name: basket_sprite_5
       rect:
         serializedVersion: 2
@@ -149,19 +150,19 @@ TextureImporter:
         y: 71
         width: 78
         height: 118
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 33, y: 59}
-        - {x: -29, y: 59}
-        - {x: -39, y: 56}
-        - {x: -39, y: -51}
-        - {x: -36, y: -59}
-        - {x: 26, y: -59}
-        - {x: 28, y: -57}
-        - {x: 39, y: -44}
-        - {x: 39, y: 58}
+      - - {x: 33, y: 118}
+        - {x: -29, y: 118}
+        - {x: -39, y: 115}
+        - {x: -39, y: 8}
+        - {x: -36, y: 0}
+        - {x: 26, y: 0}
+        - {x: 28, y: 2}
+        - {x: 39, y: 15}
+        - {x: 39, y: 117}
     - name: basket_sprite_6
       rect:
         serializedVersion: 2
@@ -169,15 +170,15 @@ TextureImporter:
         y: 71
         width: 78
         height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -24, y: 55.5}
-        - {x: -39, y: 47.5}
-        - {x: -39, y: -55.5}
-        - {x: 39, y: -55.5}
-        - {x: 39, y: 55.5}
+      - - {x: -24, y: 111}
+        - {x: -39, y: 103}
+        - {x: -39, y: 0}
+        - {x: 39, y: 0}
+        - {x: 39, y: 111}
     outline: []
   spritePackingTag: 
   userData: 
