@@ -57,6 +57,10 @@ public class UIManager : MonoBehaviour {
             }
         }
 
+		if (id && id.IsSeeker()) {
+			DrawSeekerUI();
+		}
+
         if (id && id.IsHunter()) {
 			DrawHunterUI();
         }
@@ -67,6 +71,12 @@ public class UIManager : MonoBehaviour {
     public void UpdateProgress(float newProgress) {
         progress = Mathf.Min(newProgress, 100);
     }
+
+	private void DrawSeekerUI() {
+		GUI.Label(new Rect(50, Screen.height - 70, 100, 20), "Sprint");
+		GUI.DrawTexture(new Rect(50, Screen.height - 50, 100, 10), emptyProgressBar);
+		GUI.DrawTexture(new Rect(50, Screen.height - 50, progress, 10), fullProgressBar);
+	}
 
 	private void DrawHunterUI() {
 		GUI.Label(new Rect(50, Screen.height - 70, 100, 20), "Echo");
@@ -87,6 +97,10 @@ public class UIManager : MonoBehaviour {
 			Graphics.DrawTexture(minimapPosition, minimapTexture, minimapMaterial);
 
 			// Find the angle between the player and the podium
+			if (!thisPlayer) {
+				return;
+			}
+
 			Vector3 offset = podium.transform.position - thisPlayer.transform.position;
 			float angle = Vector3.Angle(offset, thisPlayer.transform.right);
 

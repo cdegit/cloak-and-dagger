@@ -7,8 +7,10 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
     private float defaultSpeed = 0.1f;
     private float hunterSpeed = 0.2f;
 	private float waterSpeedModifier = 0.5f;
+	private float sprintingSpeedModifier = 2.5f;
 
 	private bool inWater = false;
+	private bool sprinting = false;
 
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;
@@ -45,6 +47,10 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
 		if (inWater) {
 			currentSpeed *= waterSpeedModifier;
+		}
+
+		if (sprinting) {
+			currentSpeed *= sprintingSpeedModifier;
 		}
 
 		return currentSpeed;
@@ -91,5 +97,13 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	public void ExitWater() {
 		inWater = false;
 		spriteManager.ExitWater();
+	}
+
+	public void StartSprint() {
+		sprinting = true;
+	}
+
+	public void StopSprint() {
+		sprinting = false;
 	}
 }
