@@ -8,10 +8,14 @@ public class TransparentOcclusion3D : MonoBehaviour {
 	void Start() {
 		id = GetComponent<PlayerIdentity>();
 
-		if (id.IsHunter()) {
-			spriteRenderer = GameObject.Find("Hunter Sprite").GetComponent<Renderer>();
+		if (id) {
+			if (id.IsHunter()) {
+				spriteRenderer = GameObject.Find("Hunter Sprite").GetComponent<Renderer>();
+			} else {
+				spriteRenderer = GameObject.Find("Seeker Sprite").GetComponent<Renderer>();
+			}
 		} else {
-			spriteRenderer = GameObject.Find("Seeker Sprite").GetComponent<Renderer>();
+			spriteRenderer = GetComponent<Renderer>();
 		}
 	}
 
