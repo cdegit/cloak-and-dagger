@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour {
 			DrawHunterUI();
         }
 
-		DrawMinimap();
+		// DrawMinimap();
     }
 
     public void UpdateProgress(float newProgress) {
