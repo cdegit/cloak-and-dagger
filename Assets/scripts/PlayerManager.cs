@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
     public GameObject otherPlayer;
     public GameObject thisPlayer;
+	public GameObject hunter;
+	public GameObject seeker;
     public static PlayerManager instance = null;
 
     void Awake() {
@@ -23,12 +25,19 @@ public class PlayerManager : MonoBehaviour {
             gos = GameObject.FindGameObjectsWithTag("Player");
 
             foreach (GameObject go in gos) {
-                if (go.GetComponent<PlayerIdentity>()) {
-                    if (!go.GetComponent<PlayerIdentity>().IsThisPlayer()) {
+				PlayerIdentity id = go.GetComponent<PlayerIdentity>();
+                if (id) {
+                    if (!id.IsThisPlayer()) {
                         otherPlayer = go;
                     } else {
                         thisPlayer = go;
                     }
+
+					if (id.IsHunter()) {
+						hunter = go;
+					} else {
+						seeker = go;
+					}
                 }
             }
         }
