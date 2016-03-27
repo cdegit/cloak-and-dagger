@@ -107,7 +107,7 @@ public class HidingManager : UnityEngine.Networking.NetworkBehaviour {
 			currentHidingPlace.GetComponent<interactInRange>().ShowOutline();
 		}
 
-		RpcResetHidingVars();
+		CmdFinishedAnimation();
     }
 
 	[Command]
