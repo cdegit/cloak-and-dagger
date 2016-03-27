@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 // This script requires that the game object it is attached to has:
 //     a Collider set to trigger
 // If it or a child has a sprite renderer, a yellow outline will appear around the object when the player is in range
 
-public class interactInRange : MonoBehaviour {
+public class interactInRange : NetworkBehaviour {
 	public Material outlineMaterial;
 	private Material originalMaterial;
 
     protected GameObject otherPlayer;
 
-	protected Renderer localRenderer;
+	public Renderer localRenderer;
 	protected bool triedToFindRenderer = false;
 
 
-    void Update() {
+	public virtual void Update() {
         if (!otherPlayer) {
             otherPlayer = PlayerManager.instance.otherPlayer;
         }
