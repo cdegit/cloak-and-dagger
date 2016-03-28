@@ -57,7 +57,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	}
 
     void FixedUpdate() {
-        if (!isLocalPlayer) {
+		if (!isLocalPlayer || !navAgent.isOnNavMesh) {
             return;
         }
 

@@ -31,14 +31,14 @@ public class SpriteFollowPlayer : MonoBehaviour {
     
 
     void Update() {
-        if (id.IsHunter()) {
+		if (id.IsHunter() && hunterSprite) {
 			if (inWater) {
 				// TODO: Lerp getting in and out of the water
 				hunterSprite.transform.position = transform.position + new Vector3(0, hunterOffset/2, 0);
 			} else {
 				hunterSprite.transform.position = transform.position + new Vector3(0, hunterOffset, 0);
 			}
-        } else {
+		} else if (seekerSprite) {
 			if (inWater) {
 				seekerSprite.transform.position = transform.position + new Vector3(0, seekerOffset/2, 0);
 			} else {
