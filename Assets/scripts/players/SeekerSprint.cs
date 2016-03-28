@@ -10,10 +10,12 @@ public class SeekerSprint : MonoBehaviour {
 
 	private PlayerIdentity id;
 	private PlayerMovement3D movement;
+	private InWorldUI ui;
 
 	void Start () {
 		id = GetComponent<PlayerIdentity>();
 		movement = GetComponent<PlayerMovement3D>();
+		ui = GetComponentInChildren<InWorldUI>();
 	}
 
 	void Update () {
@@ -42,5 +44,6 @@ public class SeekerSprint : MonoBehaviour {
 		}
 
 		UIManager.instance.UpdateProgress((sprintCooldownTimer/sprintCooldownTime) * 100);
+		ui.SetProgress((sprintCooldownTimer/sprintCooldownTime) * 100);
 	}
 }

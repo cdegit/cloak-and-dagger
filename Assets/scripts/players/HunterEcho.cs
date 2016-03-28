@@ -17,12 +17,14 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
 
     private PlayerIdentity id;
     private HidingManager hidingManager;
+	private InWorldUI ui;
 
 	// Use this for initialization
 	void Start () {
         hidingPlaceLayerMask = 1 << layerIndex;
         id = GetComponent<PlayerIdentity>();
         echoParticleEmitter = GetComponentInChildren<ParticleEmitter>();
+		ui = GetComponentInChildren<InWorldUI>();
     }
 	
 	// Update is called once per frame
@@ -54,6 +56,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
         }
 
 		UIManager.instance.UpdateProgress((echoCooldownTimer/echoCooldownTime) * 100);
+		ui.SetProgress((echoCooldownTimer/echoCooldownTime) * 100);
     }
 
     // Send out a circle to some distance
