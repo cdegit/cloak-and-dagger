@@ -4,6 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GoToLobby : MonoBehaviour {
 	public void go() {
-		SceneManager.LoadScene("Lobby3D");
+		SceneManager.LoadScene("customLobby");
 	}
 }

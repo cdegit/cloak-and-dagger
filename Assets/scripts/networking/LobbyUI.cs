@@ -16,8 +16,18 @@ public class LobbyUI : MonoBehaviour {
 	NetworkMatch networkMatch;
 
 	string connectionStatus = "";
+	string matchName = "";
 
 	int uuid = 0;
+
+	Transform createPanel;
+	Transform joinPanel;
+	Transform joiningPanel;
+	Transform matchesPanel;
+	Transform createMatchButton;
+	Transform joinMatchButton;
+
+	Transform backButton;
 
 	void Awake() {
 		networkMatch = gameObject.AddComponent<NetworkMatch>();
@@ -25,6 +35,16 @@ public class LobbyUI : MonoBehaviour {
 
 	// Poll to check matches
 	void Start() {
+		Transform parentPanel = transform.FindChild("ParentPanel");
+		createPanel = parentPanel.FindChild("CreatePanel");
+		joinPanel = parentPanel.FindChild("JoinPanel");
+		joiningPanel = transform.FindChild("JoiningPanel");
+		matchesPanel = joiningPanel.Find("MatchesPanel");
+		createMatchButton = createPanel.FindChild("CreateMatchButton");
+		joinMatchButton = joinPanel.FindChild("JoinMatchButton");
+
+		backButton = transform.FindChild("BackButton");
+
 		StartCoroutine("CheckMatches");
 	}
 
@@ -40,28 +60,38 @@ public class LobbyUI : MonoBehaviour {
 
 	public void CreateMatch() {
 		CreateMatchRequest create = new CreateMatchRequest();
-		create.name = "NewRoom " + uuid; // append with some uuid
+		create.name = "Room " + uuid;
 		create.size = 2;
 		create.advertise = true;
 		create.password = "";
+
+		matchName = create.name;
 
 		uuid++;
 
 		networkMatch.CreateMatch(create, OnMatchCreate);
 	}
 
-	public void OnMatchCreate(CreateMatchResponse matchResponse)
-	{
-		if (matchResponse.success) {
-			connectionStatus = "Match created. Waiting for another player to join...";
+	public void JoinMatch() {
+		createPanel.FindChild("Image").GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+		createMatchButton.gameObject.SetActive(false);
+		joinMatchButton.gameObject.SetActive(false);
+		joiningPanel.gameObject.SetActive(true);
+		backButton.gameObject.SetActive(true);
+	}
 
-			transform.FindChild("CreatedPanel").gameObject.SetActive(true);
-			transform.FindChild("CreatePanel").gameObject.SetActive(false);
-			transform.FindChild("JoinPanel").gameObject.SetActive(false);
+	public void OnMatchCreate(CreateMatchResponse matchResponse) {
+		if (matchResponse.success) {
+			connectionStatus = "Match named " + matchName + " created. Waiting for another player to join...";
+
+			joinPanel.FindChild("Image").GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+			createMatchButton.gameObject.SetActive(false);
+			joinMatchButton.gameObject.SetActive(false);
+			backButton.gameObject.SetActive(true);
 
 			matchCreated = true;
 			Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
-			NetworkServer.Listen(new MatchInfo(matchResponse), 7777); // 9000
+			NetworkServer.Listen(new MatchInfo(matchResponse), 7777);
 			NetworkServer.RegisterHandler(MsgType.Connect, OnPlayerReadyMessage);
 		} else {
 			Debug.LogError ("Create match failed");
@@ -69,23 +99,18 @@ public class LobbyUI : MonoBehaviour {
 	}
 
 	public void OnPlayerReadyMessage(NetworkMessage netMsg) {
-		Debug.Log("Player ready");
-
-		connectionStatus = "Starting Game";
+		connectionStatus = "Starting Game...";
 
 		NetworkManager.singleton.StartHost(NetworkManager.singleton.matchInfo);
 		NetworkManager.singleton.ServerChangeScene("microLevelA");
 	}
 
-	public void OnMatchList(ListMatchResponse matchListResponse)
-	{
+	public void OnMatchList(ListMatchResponse matchListResponse) {
 		if (matchListResponse.success && matchListResponse.matches != null)
 		{
 			matchList = matchListResponse.matches;
 
-			Transform joiningPanel = transform.FindChild("JoiningPanel").FindChild("MatchesPanel");
-
-			foreach (Transform child in joiningPanel) {
+			foreach (Transform child in matchesPanel) {
 				Destroy(child.gameObject);
 			}
 
@@ -93,7 +118,7 @@ public class LobbyUI : MonoBehaviour {
 				string buttonText = "Join match: " + match.name;
 
 				GameObject goButton = (GameObject)Instantiate(matchButtonPrefab);
-				goButton.transform.SetParent(joiningPanel, false);
+				goButton.transform.SetParent(matchesPanel, false);
 				goButton.transform.FindChild("Text").GetComponent<Text>().text = buttonText;
 
 				Button tempButton = goButton.GetComponent<Button>();
@@ -102,33 +127,28 @@ public class LobbyUI : MonoBehaviour {
 		}
 	}
 
-	public void OnMatchJoined(JoinMatchResponse matchJoin)
-	{
-		if (matchJoin.success)
-		{
-			connectionStatus = "Joined Match";
-			Debug.Log("Join match succeeded");
-			if (matchCreated)
-			{
-				connectionStatus = "Error";
-				Debug.LogWarning("Match already set up, aborting...");
+	public void OnMatchJoined(JoinMatchResponse matchJoin) {
+		if (matchJoin.success) {
+			connectionStatus = "Joined Match. Connecting...";
+
+			joiningPanel.gameObject.SetActive(false);
+
+			if (matchCreated) {
+				connectionStatus = "Error. Cannot connect.";
 				return;
 			}
+
 			Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
 			NetworkClient myClient = new NetworkClient();
 			myClient.RegisterHandler(MsgType.Connect, OnConnected);
 			myClient.Connect(new MatchInfo(matchJoin));
-		}
-		else
-		{
-			Debug.LogError("Join match failed");
+		} else {
+			connectionStatus = "Join match failed";
 		}
 	}
 
-	public void OnConnected(NetworkMessage msg)
-	{
-		connectionStatus = "Connected";
-		Debug.Log("Connected!");
+	public void OnConnected(NetworkMessage msg) {
+		connectionStatus = "Connected. Starting game...";
 		NetworkManager.singleton.StartClient(NetworkManager.singleton.matchInfo);
 	}
 }
