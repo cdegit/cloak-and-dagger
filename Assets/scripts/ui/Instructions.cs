@@ -2,15 +2,21 @@
 using System.Collections;
 
 public class Instructions : MonoBehaviour {
+	public bool autoPlay = false;
+
 	Transform panel;
 	int index = 0;
 
 	void Start() {
 		panel = transform.FindChild("ParentPanel");
+
+		if (autoPlay) {
+			StartCoroutine("AutoPlay");
+		}
 	}
 
 	public void next() {
-		if (index < 2) {
+		if (index < panel.childCount - 1) {
 			index++;
 			showPanel();
 		}
@@ -29,5 +35,11 @@ public class Instructions : MonoBehaviour {
 		}
 
 		panel.GetChild(index).gameObject.SetActive(true);
+	}
+
+	IEnumerator AutoPlay() {
+		yield return new WaitForSeconds(2);
+		next();
+		StartCoroutine("AutoPlay");
 	}
 }
