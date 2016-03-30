@@ -12,6 +12,7 @@ public class Gate : interactInRange {
 	private float unlockTimer = 0;
 
 	private InWorldUI ui;
+	private bool locked;
 
 	void Start() {
 		obstacle = GetComponent<NavMeshObstacle>();
@@ -29,6 +30,7 @@ public class Gate : interactInRange {
 		if (unlockTimer > unlockTime) {
 			ui.SetProgress(100);
 			player.gameObject.GetComponent<GatePlayer>().UnlockGate(gameObject);
+			locked = false;
 			unlockTimer = unlockTime;
 		}
 	}
@@ -40,6 +42,12 @@ public class Gate : interactInRange {
 	}
 
 	public override void HunterInteraction(Collider thisPlayer) {
-		thisPlayer.gameObject.GetComponent<GatePlayer>().LockGate(gameObject);
+		if (locked) {
+			thisPlayer.gameObject.GetComponent<GatePlayer>().UnlockGate(gameObject);
+			locked = false;
+		} else {
+			thisPlayer.gameObject.GetComponent<GatePlayer>().LockGate(gameObject);
+			locked = true;
+		}
 	}
 }
