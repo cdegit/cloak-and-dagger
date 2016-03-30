@@ -5,6 +5,6 @@ using UnityEngine.Networking;
 public class PlayAgain : NetworkBehaviour {
 
 	public void go() {
-		NetworkManager.singleton.ServerChangeScene("microLevelA");
+		NetworkManager.singleton.ServerChangeScene("levelABC");
 	}
 }

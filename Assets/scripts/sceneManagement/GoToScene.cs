@@ -20,6 +20,6 @@ public class GoToScene : MonoBehaviour {
 	}
 
 	public void GoToLevel() {
-		SceneManager.LoadScene("microLevelA");
+		SceneManager.LoadScene("levelABC");
 	}
 }

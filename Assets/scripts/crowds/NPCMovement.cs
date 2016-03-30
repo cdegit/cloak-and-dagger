@@ -21,7 +21,9 @@ public class NPCMovement : MonoBehaviour {
         navAgent.updateRotation = false;
 
         // Start moving to the first waypoint
-        navAgent.SetDestination(waypoints[waypointIndex].position);
+		if (waypoints.Length > 0) {
+        	navAgent.SetDestination(waypoints[waypointIndex].position);
+		}
     }
 	
 	void Update () {
@@ -36,7 +38,9 @@ public class NPCMovement : MonoBehaviour {
                     waypointIndex++;
                 }
                 
-                navAgent.SetDestination(waypoints[waypointIndex].position);
+				if (waypoints.Length > 0) {
+                	navAgent.SetDestination(waypoints[waypointIndex].position);
+				}
 
                 patrolWaitTimer = 0;
             }
