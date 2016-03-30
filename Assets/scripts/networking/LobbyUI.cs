@@ -20,6 +20,8 @@ public class LobbyUI : MonoBehaviour {
 
 	int uuid = 0;
 
+	MatchInfo matchInfo;
+
 	Transform createPanel;
 	Transform joinPanel;
 	Transform joiningPanel;
@@ -91,7 +93,8 @@ public class LobbyUI : MonoBehaviour {
 
 			matchCreated = true;
 			Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
-			NetworkServer.Listen(new MatchInfo(matchResponse), 7777);
+			matchInfo = new MatchInfo(matchResponse);
+			NetworkServer.Listen(matchInfo, 7777);
 			NetworkServer.RegisterHandler(MsgType.Connect, OnPlayerReadyMessage);
 		} else {
 			Debug.LogError ("Create match failed");
@@ -101,7 +104,7 @@ public class LobbyUI : MonoBehaviour {
 	public void OnPlayerReadyMessage(NetworkMessage netMsg) {
 		connectionStatus = "Starting Game...";
 
-		NetworkManager.singleton.StartHost(NetworkManager.singleton.matchInfo);
+		NetworkManager.singleton.StartHost(matchInfo);
 		NetworkManager.singleton.ServerChangeScene("microLevelA");
 	}
 
@@ -141,7 +144,8 @@ public class LobbyUI : MonoBehaviour {
 			Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
 			NetworkClient myClient = new NetworkClient();
 			myClient.RegisterHandler(MsgType.Connect, OnConnected);
-			myClient.Connect(new MatchInfo(matchJoin));
+			matchInfo = new MatchInfo(matchJoin);
+			myClient.Connect(matchInfo);
 		} else {
 			connectionStatus = "Join match failed";
 		}
@@ -149,6 +153,9 @@ public class LobbyUI : MonoBehaviour {
 
 	public void OnConnected(NetworkMessage msg) {
 		connectionStatus = "Connected. Starting game...";
-		NetworkManager.singleton.StartClient(NetworkManager.singleton.matchInfo);
+		Debug.Log(matchInfo);
+		Debug.Log(msg);
+
+		NetworkManager.singleton.StartClient(matchInfo);
 	}
 }
