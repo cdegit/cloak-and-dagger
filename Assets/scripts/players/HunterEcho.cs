@@ -18,6 +18,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
     private PlayerIdentity id;
     private HidingManager hidingManager;
 	private InWorldUI ui;
+	private AudioSource echoAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
         id = GetComponent<PlayerIdentity>();
         echoParticleEmitter = GetComponentInChildren<ParticleEmitter>();
 		ui = GetComponentInChildren<InWorldUI>();
+		echoAudio = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -63,23 +65,26 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
     // Draw it as it goes along the ground ideally
     void UseEcho() {
         // First check if the player is even within their range
-        float distanceToSeeker = Vector3.Distance(PlayerManager.instance.otherPlayer.transform.position, transform.position);
+		if (PlayerManager.instance.otherPlayer) {
+	        float distanceToSeeker = Vector3.Distance(PlayerManager.instance.otherPlayer.transform.position, transform.position);
 
-        if (distanceToSeeker <= echoSphereRadius) {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, echoSphereRadius, hidingPlaceLayerMask);
+	        if (distanceToSeeker <= echoSphereRadius) {
+	            Collider[] hitColliders = Physics.OverlapSphere(transform.position, echoSphereRadius, hidingPlaceLayerMask);
 
-            int i = 0;
-            while (i < hitColliders.Length) {
-                // Kick the Seeker out of their hiding place
-                if (hidingManager) {
-                    hidingManager.EmitParticlesOnNextFind();
-                    hidingManager.CheckHidingPlace(hitColliders[i].gameObject);
-                }
-                i++;
-            }
-        }
+	            int i = 0;
+	            while (i < hitColliders.Length) {
+	                // Kick the Seeker out of their hiding place
+	                if (hidingManager) {
+	                    hidingManager.EmitParticlesOnNextFind();
+	                    hidingManager.CheckHidingPlace(hitColliders[i].gameObject);
+	                }
+	                i++;
+	            }
+	        }
+		}
 
 		RpcRenderEchoEffect();
+		echoAudio.Play();
     }
 
     public bool CanHunterMove() {
