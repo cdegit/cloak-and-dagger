@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	public float hunterStartCountdown = 2f;
+	public bool isMoving = false;
 
     private float defaultSpeed = 0.1f;
     private float hunterSpeed = 0.2f;
@@ -57,6 +58,8 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	}
 
     void FixedUpdate() {
+		isMoving = false;
+
 		if (!isLocalPlayer || !navAgent.isOnNavMesh) {
             return;
         }
@@ -85,6 +88,13 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 		float modifier = GetCurrentSpeed();
 
 		Vector3 offset = new Vector3(horizontalSpeed * modifier, 0, verticalSpeed * modifier);
+		Vector3 zeroVector = new Vector3(0, 0, 0);
+		float percentageDifferenceAllowed = 0.001f;
+
+		// Compare vectors using their distance to avoid floating precision errors
+		if ((offset - zeroVector).sqrMagnitude >= percentageDifferenceAllowed) {
+			isMoving = true;
+		}
         
         navAgent.Move(offset);
     }
