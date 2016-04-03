@@ -12,10 +12,13 @@ public class SeekerSprint : MonoBehaviour {
 	private PlayerMovement3D movement;
 	private InWorldUI ui;
 
+	private NetworkedSFXManager sfxManager;
+
 	void Start () {
 		id = GetComponent<PlayerIdentity>();
 		movement = GetComponent<PlayerMovement3D>();
 		ui = GetComponentInChildren<InWorldUI>();
+		sfxManager = GetComponentInChildren<NetworkedSFXManager>();
 	}
 
 	void Update () {
@@ -27,6 +30,7 @@ public class SeekerSprint : MonoBehaviour {
 			sprinting = true;
 			sprintCooldownTimer = 0;
 			movement.StartSprint();
+			sfxManager.PlaySprint();
 		}
 
 		if (sprinting) {

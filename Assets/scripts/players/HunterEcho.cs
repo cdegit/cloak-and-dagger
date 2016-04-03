@@ -18,7 +18,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
     private PlayerIdentity id;
     private HidingManager hidingManager;
 	private InWorldUI ui;
-	private AudioSource echoAudio;
+	private NetworkedSFXManager sfxManager;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +26,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
         id = GetComponent<PlayerIdentity>();
         echoParticleEmitter = GetComponentInChildren<ParticleEmitter>();
 		ui = GetComponentInChildren<InWorldUI>();
-		echoAudio = GetComponent<AudioSource>();
+		sfxManager = GetComponentInChildren<NetworkedSFXManager>();
     }
 	
 	// Update is called once per frame
@@ -84,7 +84,7 @@ public class HunterEcho : UnityEngine.Networking.NetworkBehaviour {
 		}
 
 		RpcRenderEchoEffect();
-		echoAudio.Play();
+		sfxManager.PlayEcho();
     }
 
     public bool CanHunterMove() {
