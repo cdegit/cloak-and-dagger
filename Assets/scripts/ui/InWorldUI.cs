@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class InWorldUI : MonoBehaviour {
-
 	public bool onlyShowWhenChanging = false;
 
 	private float progress = 100;
