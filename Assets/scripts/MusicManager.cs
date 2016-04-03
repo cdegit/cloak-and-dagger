@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MusicManager : MonoBehaviour {
 	public AudioSource titleScreen;
+	public AudioSource desert;
+	public AudioSource city;
 	public AudioSource garden;
 
 	public float crossFadeModifier = 0.5f;
@@ -45,6 +47,16 @@ public class MusicManager : MonoBehaviour {
 			newAudio = null;
 			doCrossfade = false;
 		}
+	}
+
+	public void PlayDesertMusic() {
+		doCrossfade = true;
+		newAudio = desert;
+	}
+
+	public void PlayCityMusic() {
+		doCrossfade = true;
+		newAudio = city;
 	}
 
 	public void PlayGardenMusic() {

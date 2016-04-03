@@ -16,6 +16,14 @@ public class Region : MonoBehaviour {
 			return;
 		}
 
+		if (region == RegionEnum.Desert) {
+			music.PlayDesertMusic();
+		}
+
+		if (region == RegionEnum.City) {
+			music.PlayCityMusic();
+		}
+
 		if (region == RegionEnum.Garden) {
 			music.PlayGardenMusic();
 		}
