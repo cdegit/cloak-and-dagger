@@ -3,8 +3,50 @@ using System.Collections;
 using UnityEngine.Networking;
 
 public class NetworkedSFXManager : NetworkBehaviour {
-	public AudioSource echo;
-	public AudioSource sprint;
+	public AudioClip echo;
+	public AudioClip sprint;
+	public AudioClip splashing;
+	public AudioClip grass;
+	public AudioClip steps;
+
+	private bool doCrossfade;
+	private float crossFadeModifier;
+
+	void Update() {
+		GameObject hunter = PlayerManager.instance.hunter;
+		GameObject seeker = PlayerManager.instance.seeker;
+
+		if (!seeker || !hunter) {
+			return;
+		}
+
+		PlayerMovement3D hunterMovement = hunter.GetComponent<PlayerMovement3D>();
+		PlayerMovement3D seekerMovement = seeker.GetComponent<PlayerMovement3D>();
+
+		AudioSource hunterAudio = hunter.GetComponent<AudioSource>();
+		AudioSource seekerAudio = seeker.GetComponent<AudioSource>();
+
+		CheckWater(seekerMovement, seekerAudio);
+		CheckWater(hunterMovement, hunterAudio);
+
+		if (seekerMovement.isMoving) {
+			// TODO: Play steps sound effect
+		}
+	}
+
+	void CheckWater(PlayerMovement3D movement, AudioSource audio) {
+		if (movement.inWater) {
+			if (audio.clip != splashing) {
+				audio.clip = splashing;
+				audio.Play();
+			}
+		} else {
+			if (audio.clip == splashing) {
+				audio.Stop();
+				audio.clip = null;
+			}
+		}
+	}
 
 	public void PlayEcho() {
 		CmdPlayEcho();
@@ -17,7 +59,7 @@ public class NetworkedSFXManager : NetworkBehaviour {
 
 	[ClientRpc]
 	private void RpcPlayEcho() {
-		AudioSource.PlayClipAtPoint(echo.clip, PlayerManager.instance.hunter.transform.position);
+		PlayerManager.instance.hunter.GetComponent<AudioSource>().PlayOneShot(echo);
 	}
 
 
@@ -32,6 +74,6 @@ public class NetworkedSFXManager : NetworkBehaviour {
 
 	[ClientRpc]
 	private void RpcPlaySprint() {
-		AudioSource.PlayClipAtPoint(sprint.clip, PlayerManager.instance.seeker.transform.position);
+		PlayerManager.instance.hunter.GetComponent<AudioSource>().PlayOneShot(sprint);
 	}
 }

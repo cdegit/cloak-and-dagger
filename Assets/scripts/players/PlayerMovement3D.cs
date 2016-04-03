@@ -10,7 +10,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	private float waterSpeedModifier = 0.5f;
 	private float sprintingSpeedModifier = 2.5f;
 
-	private bool inWater = false;
+	public bool inWater = false;
 	private bool sprinting = false;
 
     private NavMeshAgent navAgent;
@@ -101,12 +101,18 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
 	public void EnterWater() {
 		inWater = true;
-		spriteManager.EnterWater();
+
+		if (spriteManager) {
+			spriteManager.EnterWater();
+		}
 	}
 
 	public void ExitWater() {
 		inWater = false;
-		spriteManager.ExitWater();
+
+		if (spriteManager) {
+			spriteManager.ExitWater();
+		}
 	}
 
 	public void StartSprint() {
