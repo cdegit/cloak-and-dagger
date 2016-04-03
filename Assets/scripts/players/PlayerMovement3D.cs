@@ -11,7 +11,7 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 	private float sprintingSpeedModifier = 2.5f;
 
 	public bool inWater = false;
-	private bool sprinting = false;
+	public bool sprinting = false;
 
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;

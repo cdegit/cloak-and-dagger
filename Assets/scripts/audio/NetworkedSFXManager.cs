@@ -7,7 +7,8 @@ public class NetworkedSFXManager : NetworkBehaviour {
 	public AudioClip sprint;
 	public AudioClip splashing;
 	public AudioClip grass;
-	public AudioClip steps;
+	public AudioClip walkingSlowly;
+	public AudioClip walkingQuickly;
 
 	private bool doCrossfade;
 	private float crossFadeModifier;
@@ -26,26 +27,27 @@ public class NetworkedSFXManager : NetworkBehaviour {
 		AudioSource hunterAudio = hunter.GetComponent<AudioSource>();
 		AudioSource seekerAudio = seeker.GetComponent<AudioSource>();
 
-		CheckWater(seekerMovement, seekerAudio);
-		CheckWater(hunterMovement, hunterAudio);
+		if (CheckState(seekerMovement.inWater, seekerAudio, splashing)) return;
+		if (CheckState(hunterMovement.inWater, hunterAudio, splashing)) return;
 
-		if (seekerMovement.isMoving) {
-			// TODO: Play steps sound effect
-		}
+		if (CheckState(seekerMovement.sprinting, seekerAudio, walkingQuickly)) return;
+		if (CheckState(seekerMovement.isMoving, seekerAudio, walkingSlowly)) return;
 	}
 
-	void CheckWater(PlayerMovement3D movement, AudioSource audio) {
-		if (movement.inWater) {
-			if (audio.clip != splashing) {
-				audio.clip = splashing;
+	bool CheckState(bool state, AudioSource audio, AudioClip clip) {
+		if (state) {
+			if (audio.clip != clip) {
+				audio.clip = clip;
 				audio.Play();
 			}
 		} else {
-			if (audio.clip == splashing) {
+			if (audio.clip == clip) {
 				audio.Stop();
 				audio.clip = null;
 			}
 		}
+
+		return state;
 	}
 
 	public void PlayEcho() {
