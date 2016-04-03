@@ -12,6 +12,8 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
 
 	public bool inWater = false;
 	public bool sprinting = false;
+	public bool onGrass = false;
+	public bool inGrass = false;
 
     private NavMeshAgent navAgent;
     private HidingManager hidingManager;

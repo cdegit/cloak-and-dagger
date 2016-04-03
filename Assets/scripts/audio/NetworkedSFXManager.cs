@@ -6,7 +6,8 @@ public class NetworkedSFXManager : NetworkBehaviour {
 	public AudioClip echo;
 	public AudioClip sprint;
 	public AudioClip splashing;
-	public AudioClip grass;
+	public AudioClip onGrass;
+	public AudioClip inGrass;
 	public AudioClip walkingSlowly;
 	public AudioClip walkingQuickly;
 
@@ -29,6 +30,9 @@ public class NetworkedSFXManager : NetworkBehaviour {
 
 		if (CheckState(seekerMovement.inWater, seekerAudio, splashing)) return;
 		if (CheckState(hunterMovement.inWater, hunterAudio, splashing)) return;
+
+		if (CheckState(seekerMovement.onGrass, seekerAudio, onGrass)) return;
+		if (CheckState(seekerMovement.inGrass, seekerAudio, inGrass)) return;
 
 		if (CheckState(seekerMovement.sprinting, seekerAudio, walkingQuickly)) return;
 		if (CheckState(seekerMovement.isMoving, seekerAudio, walkingSlowly)) return;
