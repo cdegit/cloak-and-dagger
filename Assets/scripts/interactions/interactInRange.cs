@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 
 public class interactInRange : NetworkBehaviour {
 	public Material outlineMaterial;
+	public bool ignoreSprite = false;
 	private Material originalMaterial;
 
     protected GameObject otherPlayer;
@@ -22,7 +23,9 @@ public class interactInRange : NetworkBehaviour {
         }
 
 		if (!triedToFindRenderer) {
-			localRenderer = GetComponentInChildren<SpriteRenderer>() as Renderer;
+			if (!ignoreSprite) {
+				localRenderer = GetComponentInChildren<SpriteRenderer>() as Renderer;
+			}
 
 			// If there wasn't a sprite, there should be a mesh renderer to use
 			if (!localRenderer) {
