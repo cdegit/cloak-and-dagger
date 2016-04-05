@@ -14,7 +14,8 @@ public class GatePlayer : NetworkBehaviour {
 
 	[ClientRpc]
 	private void RpcUnlockGate(GameObject gate) {
-		gate.GetComponent<Renderer>().enabled = false;
+		gate.transform.FindChild("desert gate").gameObject.SetActive(false);
+		gate.transform.FindChild("desert gate open").gameObject.SetActive(true);
 		gate.GetComponent<NavMeshObstacle>().carving = false;
 	}
 
@@ -29,7 +30,8 @@ public class GatePlayer : NetworkBehaviour {
 
 	[ClientRpc]
 	private void RpcLockGate(GameObject gate) {
-		gate.GetComponent<Renderer>().enabled = true;
+		gate.transform.FindChild("desert gate").gameObject.SetActive(true);
+		gate.transform.FindChild("desert gate open").gameObject.SetActive(false);
 		gate.GetComponent<NavMeshObstacle>().carving = true;
 	}
 }
