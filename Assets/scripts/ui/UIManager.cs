@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 	public static UIManager instance = null;
@@ -48,6 +49,11 @@ public class UIManager : MonoBehaviour {
 	}
 
     void OnGUI() {
+		Scene scene = SceneManager.GetActiveScene();
+		if (scene.name == "hunterVictory" || scene.name == "seekerVictory" ) {
+			return;
+		}
+
         // Player manager doesn't have the players on start
         if (!id) {
             if (PlayerManager.instance.thisPlayer) {

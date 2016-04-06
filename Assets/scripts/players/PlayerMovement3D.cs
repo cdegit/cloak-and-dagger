@@ -32,6 +32,10 @@ public class PlayerMovement3D : UnityEngine.Networking.NetworkBehaviour {
         id = GetComponent<PlayerIdentity>();
 		spriteManager = GetComponent<SpriteFollowPlayer>();
 
+		if (!Camera.main.GetComponent<followTarget3D>()) {
+			return;
+		}
+
         Camera.main.GetComponent<followTarget3D>().target = transform;
 		GameObject.Find("Minimap Camera").GetComponent<followTarget3D>().target = transform;
     }

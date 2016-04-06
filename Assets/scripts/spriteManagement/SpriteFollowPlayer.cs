@@ -22,6 +22,10 @@ public class SpriteFollowPlayer : MonoBehaviour {
         hunterSprite = GameObject.Find("Hunter Sprite");
         seekerSprite = GameObject.Find("Seeker Sprite");
 
+		if (!hunterSprite) {
+			return;
+		}
+
         hunterRenderer = hunterSprite.GetComponent<Renderer>();
         seekerRenderer = seekerSprite.GetComponent<Renderer>();
 
