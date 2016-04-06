@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 public class Gate : interactInRange {
 	public NavMeshObstacle obstacle;
 
+	private AudioSource audio;
 	private Collider player;
 
 	private bool unlocking = false;
@@ -17,6 +18,7 @@ public class Gate : interactInRange {
 	void Start() {
 		obstacle = GetComponent<NavMeshObstacle>();
 		ui = GetComponentInChildren<InWorldUI>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	public override void Update() {
@@ -39,12 +41,14 @@ public class Gate : interactInRange {
 		// Start unlocking process
 		unlocking = true;
 		player = thisPlayer;
+		audio.Play();
 	}
 
 	public override void HunterInteraction(Collider thisPlayer) {
 		if (locked) {
 			thisPlayer.gameObject.GetComponent<GatePlayer>().UnlockGate(gameObject);
 			locked = false;
+			audio.Play();
 		} else {
 			thisPlayer.gameObject.GetComponent<GatePlayer>().LockGate(gameObject);
 			locked = true;
